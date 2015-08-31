@@ -1,0 +1,25 @@
+_____________________
+The xebaposter class
+v2.1
+
+The class is designed for making an academic poster. This work is a fork of 
+baposter by Brian Amberg and Reinhold Kainhofer available at 
+http://www.brian-amberg.de/uni/poster/.
+
+The class should be used with bidi and xepersian packages,
+because it uses some special environment and commands from these packages.
+
+For more information, please see the documentation.
+
+Current version release date: 2015/08/28
+___________________
+Seiied-Mohammad-Javad Razvian
+javadr@gmail.com
+
+Copyright © 2015
+It may be distributed and/or modified under the LaTeX Project Public License,
+version 1.3c or higher (your choice). The latest version of
+this license is at: http://www.latex-project.org/lppl.txt
+
+This work is “author-maintained” (as per LPPL maintenance status)
+by Seiied-Mohammad-Javad Razavian.

@@ -1,4 +1,4 @@
-\documentclass[debug,a0paper,portrait]{xebaposter}
+\documentclass[debug,a0paper,persian]{xebaposter}
 
 \usepackage{url}
 \usepackage{amsmath}
@@ -75,7 +75,7 @@
       textborder=rounded,
       % Format of text header
       headerborder=closed,
-      headerheight=.087\textheight,
+      headerheight=.065\textheight,
       headershape=roundedleft,
       headershade=plain,
 %      headerfont=\Large, %Sans Serif
@@ -89,12 +89,15 @@
       \includegraphics[height=0.07\textheight]{logo}
  }
  % Title
- {طراحی پوستری زیبا و در خور با کمک کلاس \lr{xebaposter} (راهنمـــــــــــــــا)
+ {طراحی پوستری زیبا و در خور با کمک کلاس \lr{xebaposter}
 }
  % Authors
  {\large \lr{Brian Amberg}, \lr{Reinhold Kainhofer}, سیّدمحمّدجواد رضویان
  \\%[1em]
- {\normalsize\texttt{\lr{javadr@parsilatex.com, reinhold@kainhofer.com, baposter@brian-amberg.de}}}}
+ {\normalsize\texttt{\lr{javadr@parsilatex.com, reinhold@kainhofer.com, baposter@brian-amberg.de}}
+ \\
+۱۰ شهریور ۱۳۹۴، ۱ سپتامبر ۲۰۱۵
+ }}
  % University logo
  {
 \begin{tabular}{r}
@@ -146,6 +149,7 @@
 \vspace{-2mm}
 \begin{verbatim}
 \begin{poster}
+
     { key=value options }
     { Eye Catcher, empty 
        if option eyecatcher=no}
@@ -163,9 +167,11 @@
 {گزینه‌های کلاس}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{itemize}
+    \item \texttt{persian/latin}:
+     چینش پوستر فارسی/لاتین.% پیش‌فرض پوستر لاتین است.
     \item \texttt{portrait/landscape}: طرح‌بندی صفحه
-    \item \texttt{a0paper, a1paper, a2paper, a3paper, a4paper, archE}: سایز صفحات از پیش تعریف‌شده
-    \item \texttt{paperwidth=length, paperheight=length}: تنظیم عرض/ارتفاع صفحه. 
+    \item \lr{\texttt{a0paper, a1paper, a2paper, a3paper, a4paper, archE}}: سایز صفحات از پیش تعریف‌شده
+    \item \lr{\texttt{paperwidth=length, paperheight=length}}: تنظیم عرض/ارتفاع صفحه. 
     این گزینه‌ها را بهیچوجه با صفحات از پیش‌تعریف شده بکار نبرید.
     \item \texttt{margin=length}: حاشیه صفحه
     \item \lr{\texttt{fontscale=real number}}:
@@ -293,12 +299,15 @@
 شخصی‌سازی هر جعبه گزینه‌های مختلف موجود تا آنجا که ممکن است نشان داده شود. 
 \end{posterbox}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{posterbox}[name=ack,column=0,span=1,below=setting,textborder=faded,
+\begin{posterbox}[name=ack,column=0,span=1,below=setting,
 ,textborder=triangles]{قدردانی}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 با تشکر از دکتر \lr{Brian} خالق کلاس پوستر و تشکر ویژه از جناب آقای دکتر وفا خیلقی بخاطر زحماتی که برای فارسی‌نویسی در
 محیط زی‌لاتک انجام‌ داده‌اند و دکتر محمود امین‌طوسی به سبب پیشنهاد نام زیباپوستر و گروه پارسی‌لاتک برای تست این کلاس.
-\end{posterbox}
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\footnotetext{
+نسخه ۲.۲ بر خلاف نسخه اولیّه هر دو نوع پوستر پارسی و لاتین را پشتیبانی می‌کند. }
+\end{posterbox} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{poster}
 \end{document}

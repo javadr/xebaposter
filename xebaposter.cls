@@ -25,6 +25,8 @@
 %% Copyright (C) 2011      Reinhold Kainhofer <reinhold@kainhofer.com>
 %% Copyright (C) 2015      Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
 %%
+%% 1. September 2015: 
+%%     - persian/latin options added to the class and default is latin. From now on, this class can be used for both latin and persian poster.  The only thing that should be mentioned is the persian one must be compiled with xelatex but the latin one should be compiled with pdflatex or xelatex. For latin poster pdflatex is preferred because shading feature of tikz doesn't work properly with xelatex from TeXLive2013! the bug reported in http://tex.stackexchange.com/questions/262877.
 %% 28. August 2015: 
 %%     - A bidi@tikzpicture is used instead of tikzpicture because it causes some unwanted extra spaces in the poster.
 %% 21. August 2015: 
@@ -119,12 +121,12 @@
 %%
 %%
 %% Licence: GPL
-\ProvidesClass{xebaposter}[2015/08/28 v2.1 xebaposter class]
+\ProvidesClass{xebaposter}[2015/09/01 v2.2 xebaposter class]
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \LoadClass{article}
 \typeout{baposter: Brian Amberg, 2007, 2008, 2009, 2010, 2011 | http://www.brian-amberg.de/uni/poster/}
 \typeout{baposter: Reinhold Kainhofer, 2011 | http://reinhold.kainhofer.com/}
-\typeout{xebaposter: Seiied-Mohammad-Javad Razavian, 2015}
+\typeout{xebaposter: Seiied-Mohammad-Javad Razavian, 2015 | https://github.com/javadr/xebaposter/}
 %
 %% Define lengths only once on inclusion, such that we can make multiple posters
 \newlength{\xebaposter@basepaperwidth}%
@@ -259,6 +261,10 @@
 \DeclareOptionX{table}{}%
 \DeclareOptionX{showframe}{}%
 %
+\newif\if@xebaposter@persian
+\DeclareOptionX{persian}{\@xebaposter@persiantrue}
+\DeclareOptionX{latin}{\@xebaposter@persianfalse}
+%
 \ProcessOptionsX%
 %
 \if@debug
@@ -267,6 +273,12 @@
 \newcommand{\debug}[1]{}%
 \fi
 %
+\if@xebaposter@persian
+    \relax
+\else    
+    \newcommand{\rl}[1]{#1}
+    \newcommand{\persian}{\relax}
+\fi 
 %
 %
 \setlength{\xebaposter@basepaperwidth} {\xebaposter@fontscale\xebaposter@finalpaperwidth }%
@@ -529,34 +541,65 @@
 %
 \newcommand{\xebaposter@background@shaderl}[2]{%
   \debug{xebaposter: Using shade right left background.}%
+\if@xebaposter@persian
     {\setLTR\begin{bidi@tikzpicture}[remember picture,overlay]%
     \shade [shading=axis,left color=#1,right color=#2] (current page.north east)%
            rectangle(current page.south west);%
   \end{bidi@tikzpicture}}%
+\else
+    \begin{tikzpicture}[remember picture,overlay]%
+    \shade [shading=axis,left color=#1,right color=#2] (current page.north east)%
+           rectangle(current page.south west);%
+  \end{tikzpicture}%
+\fi 
 }%
 \newcommand{\xebaposter@background@shadelr}[2]{%
   \debug{xebaposter: Using shade left right background.}%
+\if@xebaposter@persian
     {\setLTR\begin{bidi@tikzpicture}[remember picture,overlay]%
     \shade [shading=axis,left color=#1,right color=#2] (current page.north west)%
            rectangle(current page.south east);%
   \end{bidi@tikzpicture}}%
+\else 
+    \begin{tikzpicture}[remember picture,overlay]%
+    \shade [shading=axis,left color=#1,right color=#2] (current page.north west)%
+           rectangle(current page.south east);%
+  \end{tikzpicture}%
+\fi 
 }%
 \newcommand{\xebaposter@background@shadetb}[2]{%
   \debug{xebaposter: Using shade top to bottom background.}%
+\if@xebaposter@persian
     {\setLTR\begin{bidi@tikzpicture}[remember picture,overlay]%
     \shade [shading=axis,top color=#1,bottom color=#2] (current page.north west)%
            rectangle(current page.south east);%
   \end{bidi@tikzpicture}}%
+\else 
+    \begin{tikzpicture}[remember picture,overlay]%
+    \shade [shading=axis,top color=#1,bottom color=#2] (current page.north west)%
+           rectangle(current page.south east);%
+  \end{tikzpicture}%
+\fi 
 }%
 \newcommand{\xebaposter@background@plain}[2]{%
   \debug{xebaposter: Using plain background.}%
+\if@xebaposter@persian
   {\setLTR\begin{bidi@tikzpicture}[remember picture,overlay]%
     \fill [#1] {(current page.north west) rectangle (current page.south east)};%
   \end{bidi@tikzpicture}}%
+\else 
+  \begin{tikzpicture}[remember picture,overlay]%
+    \fill [#1] {(current page.north west) rectangle (current page.south east)};%
+  \end{tikzpicture}%
+\fi   
 }%
 \newcommand{\xebaposter@background@user}[2]{%
   \debug{xebaposter: Using user background.}%
+\if@xebaposter@persian
     {\setLTR\xebaposter@backgroundCmd}%
+\else
+    {\xebaposter@backgroundCmd}%
+\fi    
 }%
 \newcommand{\xebaposter@background@none}[2]{%
   \debug{xebaposter: Using no background.}%
@@ -697,18 +740,32 @@
 %
 % These functions take one argument: the header text
 \newcommand{\xebaposter@box@headerdrawtext@rectangle}[1]{%
+\if@xebaposter@persian
   \path (\xebaposter@box@name ne) +(0em,-0.5\xebaposter@box@@boxheaderheight) node[anchor=east,inner sep=0.4em] {#1};%
+\else
+  \path (\xebaposter@box@name nw) +(0em,-0.5\xebaposter@box@@boxheaderheight) node[anchor=west,inner sep=0.4em] {#1};%
+\fi  
 }%
 \newcommand{\xebaposter@box@headerdrawtext@smallrounded}[1]{%
   \path (\xebaposter@box@name nw) +(0.5\boxwidth,-0.5\xebaposter@box@@boxheaderheight) node[anchor=center] {#1};%
 }%
 \newcommand{\xebaposter@box@headerdrawtext@roundedright}[1]{%
+\if@xebaposter@persian
   \path (\xebaposter@box@name ne) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
         node[anchor=east,inner sep=0.4em,text depth=0.4em] {#1};%
+\else
+  \path (\xebaposter@box@name nw) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
+        node[anchor=west,inner sep=0.4em,text depth=0.4em] {#1};%
+\fi 
 }%
 \newcommand{\xebaposter@box@headerdrawtext@roundedleft}[1]{%
+\if@xebaposter@persian
   \path (\xebaposter@box@name ne) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
         node[anchor=east,inner sep=0.4em] {#1};
+\else 
+  \path (\xebaposter@box@name nw) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
+        node[anchor=west,inner sep=0.4em] {#1};
+\fi 
 }%
 \newcommand{\xebaposter@box@headerdrawtext@rounded}[1]{%
     \path (\xebaposter@box@name nw) +(0.5\boxwidth,-0.5\xebaposter@box@@boxheaderheight) node[anchor=center] {#1};%
@@ -885,16 +942,19 @@
 %
 %
     %% The columns is always given absolute
-    % boxstartx = column * colwidth + column * colspacing
-%    \setlength{\boxstartx}{(\colwidth+\xebaposter@@colspacing)*\xebaposter@box@column}%
+\if@xebaposter@persian
     % boxstartx = (columns-column-span) * colwidth + (columns-column-span) * colspacing    
 %    \setlength{\boxstartx}{(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\colwidth+(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\xebaposter@@colspacing}%by smjr    
-   \setlength{\boxstartx}{\xebaposter@columns\colwidth}% by smjr
-    \addtolength{\boxstartx}{-\xebaposter@box@column\colwidth}% by smjr
-    \addtolength{\boxstartx}{-\xebaposter@box@span\colwidth}% by smjr
-    \addtolength{\boxstartx}{\xebaposter@columns\xebaposter@@colspacing}% by smjr
-    \addtolength{\boxstartx}{-\xebaposter@box@column\xebaposter@@colspacing}% by smjr
-    \addtolength{\boxstartx}{-\xebaposter@box@span\xebaposter@@colspacing}% by smjr
+   \setlength{\boxstartx}{\xebaposter@columns\colwidth}%
+    \addtolength{\boxstartx}{-\xebaposter@box@column\colwidth}%
+    \addtolength{\boxstartx}{-\xebaposter@box@span\colwidth}%
+    \addtolength{\boxstartx}{\xebaposter@columns\xebaposter@@colspacing}%
+    \addtolength{\boxstartx}{-\xebaposter@box@column\xebaposter@@colspacing}%
+    \addtolength{\boxstartx}{-\xebaposter@box@span\xebaposter@@colspacing}%
+\else
+    % boxstartx = column * colwidth + column * colspacing
+    \setlength{\boxstartx}{(\colwidth+\xebaposter@@colspacing)*\xebaposter@box@column}%
+\fi 
 %
     %% The width is gvien absolute
     % Box Width = span * colwidth + (span-1) * colspacing
@@ -905,7 +965,9 @@
     \setbox\xebaposter@box@content=\hbox\bgroup%
       \begin{pgfinterruptpicture}%
         \begin{minipage}[t]{\boxwidth-\xebaposter@box@@boxpadding*2}
+\if@xebaposter@persian
         \persian%
+\fi
           \xebaposter@box@textfont\bgroup%
   }% End of posterbox preamble
   %%% HERE COME THE ACTUAL CONTENTS OF THE POSTERBOX ENVIRONMENT
@@ -1064,8 +1126,12 @@
   \xebaposterPosterDrawBackground{bgColorOne}{bgColorTwo}%
   %% Poster header/title
   \hspace{-1.5em}%
+\if@xebaposter@persian
   \bgroup\setLTR
   \begin{bidi@tikzpicture}[inner sep=0pt,outer sep=0pt,line width=0.05em,align=right]%
+\else
+  \begin{tikzpicture}[inner sep=0pt,outer sep=0pt,line width=0.05em,align=right]%
+\fi 
     \useasboundingbox (0em,0em) rectangle(\textwidth,\textheight);%
     \path[shape=coordinate]%
       (0pt,\colheight) coordinate(north west) (\textwidth,\colheight) coordinate(north east)%
@@ -1088,20 +1154,41 @@
     %
     %
     %      % Draw Header%
-    \draw (north west) +(0em,1em+0.5\headerheight) node(image)[anchor=west]   { {\usebox{\xebaposter@titleimage@right }} };%
-    \draw (north east) +(0em,1em+0.5\headerheight) node(logo) [anchor=east]   { {\usebox{\xebaposter@titleimage@left}} };%
+    \draw (north west) +(0em,1em+0.5\headerheight) node(image)[anchor=west]   { {\usebox{
+\if@xebaposter@persian
+    \xebaposter@titleimage@right
+\else
+    \xebaposter@titleimage@left
+\fi     }} };%
+    \draw (north east) +(0em,1em+0.5\headerheight) node(logo) [anchor=east]   { {\usebox{
+\if@xebaposter@persian
+    \xebaposter@titleimage@left
+\else 
+    \xebaposter@titleimage@right
+\fi     }} };%
     %
     \ifxebaposter@eyecatcher% Has eye catcher%
       \draw (image.east) node(title)[anchor=west,text width=\xebaposter@titleimage@textwidth]{%
         \begin{minipage}{\xebaposter@titleimage@textwidth}%
           \begin{center}%
+\if@xebaposter@persian
           \textbf{\Huge \rl{#3}}\\%
           {\Large \rl{#4}}%
+\else
+          \textbf{\Huge #3}\\%
+          {\Large #4}%
+\fi          
           \end{center}%
         \end{minipage}%
       };%
     \else% Has no eye catcher
-      \draw (image.east) node(title)[anchor=west]  { {\begin{minipage}{\xebaposter@titleimage@textwidth}\persian{\bfseries\Huge\rl{#3}}\\{\Large\rl{#4}}\end{minipage}} };%
+      \draw (image.east) node(title)[anchor=west]  { {\begin{minipage}{\xebaposter@titleimage@textwidth}
+\if@xebaposter@persian      
+      \persian{\bfseries\Huge\rl{#3}}\\{\Large\rl{#4}}
+\else
+      \persian{\bfseries\Huge #3}\\{\Large #4}
+\fi      
+      \end{minipage}} };%
     \fi
   }% END poster begin
 % The body
@@ -1123,8 +1210,12 @@
         \draw[draw=green,draw opacity=0.7] (0pt,\colheight-\y\colheight)  --%
             (\textwidth,\colheight-\y\colheight) node[anchor=west] {\y};%
     \fi%
-  \end{bidi@tikzpicture}%
-  \egroup
+\if@xebaposter@persian      
+    \end{bidi@tikzpicture}%
+    \egroup
+\else
+  \end{tikzpicture}%
+\fi  
 %  \xkvview{}
  \par
   }% END poster end

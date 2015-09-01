@@ -1,17 +1,15 @@
 _____________________
 The xebaposter class
-v2.1
+v2.2
 
 The class is designed for making an academic poster. This work is a fork of 
 baposter by Brian Amberg and Reinhold Kainhofer available at 
 http://www.brian-amberg.de/uni/poster/.
 
-The class should be used with bidi and xepersian packages,
-because it uses some special environments and commands from these packages.
-
+The class could be used with both latin and persian posters.
 For more information, please see the documentation.
 
-Current version release date: 2015/08/28
+Current version release date: 2015/09/01
 ___________________
 Seiied-Mohammad-Javad Razvian
 javadr@gmail.com

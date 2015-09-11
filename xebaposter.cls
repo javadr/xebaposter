@@ -25,7 +25,9 @@
 %% Copyright (C) 2011      Reinhold Kainhofer <reinhold@kainhofer.com>
 %% Copyright (C) 2015      Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
 %%
-%% 1. September 2015: 
+%% 1. September 2015: ver 2.21
+%%     - if xebaposter's user didn't set persian/latin option, by default it will be set latin but in case xepersian package is being loaded the default will be persian unless the user set latin explicitly. 
+%% 1. September 2015: ver 2.2
 %%     - persian/latin options added to the class and default is latin. From now on, this class can be used for both latin and persian poster.  The only thing that should be mentioned is the persian one must be compiled with xelatex but the latin one should be compiled with pdflatex or xelatex. For latin poster pdflatex is preferred because shading feature of tikz doesn't work properly with xelatex from TeXLive2013! the bug reported in http://tex.stackexchange.com/questions/262877.
 %% 28. August 2015: 
 %%     - A bidi@tikzpicture is used instead of tikzpicture because it causes some unwanted extra spaces in the poster.
@@ -121,7 +123,7 @@
 %%
 %%
 %% Licence: GPL
-\ProvidesClass{xebaposter}[2015/09/01 v2.2 xebaposter class]
+\ProvidesClass{xebaposter}[2015/09/10 v2.21 xebaposter class]
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \LoadClass{article}
 \typeout{baposter: Brian Amberg, 2007, 2008, 2009, 2010, 2011 | http://www.brian-amberg.de/uni/poster/}
@@ -168,6 +170,7 @@
 \RequirePackage{pgf}%
 \RequirePackage{ifthen}%
 \RequirePackage[T1]{fontenc}%
+\RequirePackage{biditools}
 %\RequirePackage[l2tabu, orthodox]{nag}%
 \usetikzlibrary{decorations}%
 \usetikzlibrary{fadings}%
@@ -262,8 +265,9 @@
 \DeclareOptionX{showframe}{}%
 %
 \newif\if@xebaposter@persian
+\newif\if@xebaposter@latin
 \DeclareOptionX{persian}{\@xebaposter@persiantrue}
-\DeclareOptionX{latin}{\@xebaposter@persianfalse}
+\DeclareOptionX{latin}{\@xebaposter@latintrue}
 %
 \ProcessOptionsX%
 %
@@ -273,13 +277,16 @@
 \newcommand{\debug}[1]{}%
 \fi
 %
-\if@xebaposter@persian
+%%% when user didn't set persian/latin option, if he/she uses xepersian the default will be persian, otherwise default will be latin. 
+\if@xebaposter@latin
     \relax
-\else    
-    \newcommand{\rl}[1]{#1}
-    \newcommand{\persian}{\relax}
-\fi 
-%
+\else
+    \if@xebaposter@persian
+        \relax
+    \else
+        \AtBeginDocument{\@ifpackageloaded{xepersian}{\@xebaposter@persiantrue}{}}
+    \fi
+\fi
 %
 \setlength{\xebaposter@basepaperwidth} {\xebaposter@fontscale\xebaposter@finalpaperwidth }%
 \setlength{\xebaposter@basepaperheight}{\xebaposter@fontscale\xebaposter@finalpaperheight}%
@@ -927,7 +934,11 @@
     % Override the poster-wide defaults on a per-box basis
     \setkeys[ba]{posterbox}{##1}%
 %
+\if@xebaposter@persian
     \def\xebaposter@box@title{\rl{##2}}%
+\else    
+    \def\xebaposter@box@title{{##2}}%
+\fi    
 %
     \colorlet{borderColor}{\xebaposter@box@borderColor}%
     \colorlet{headerColorOne}{\xebaposter@box@headerColorOne}%
@@ -944,7 +955,7 @@
     %% The columns is always given absolute
 \if@xebaposter@persian
     % boxstartx = (columns-column-span) * colwidth + (columns-column-span) * colspacing    
-%    \setlength{\boxstartx}{(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\colwidth+(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\xebaposter@@colspacing}%by smjr    
+%    \setlength{\boxstartx}{(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\colwidth+(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\xebaposter@@colspacing}%   
    \setlength{\boxstartx}{\xebaposter@columns\colwidth}%
     \addtolength{\boxstartx}{-\xebaposter@box@column\colwidth}%
     \addtolength{\boxstartx}{-\xebaposter@box@span\colwidth}%
@@ -1186,7 +1197,7 @@
 \if@xebaposter@persian      
       \persian{\bfseries\Huge\rl{#3}}\\{\Large\rl{#4}}
 \else
-      \persian{\bfseries\Huge #3}\\{\Large #4}
+      {\bfseries\Huge #3}\\{\Large #4}
 \fi      
       \end{minipage}} };%
     \fi

@@ -12,6 +12,7 @@
 \usepackage[inline]{enumitem}% for making inline list.
 \setlist{noitemsep}% Save space in lists.
 
+\usepackage{atbegshi}
 \usepackage{xepersian}
 \settextfont{Yas}
 
@@ -34,13 +35,19 @@
 \begin{document}
 %%% Setting User Defined Background %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %if you want to use your preferred background, you should set background=user in poster settings.
-\background{
-  \begin{bidi@tikzpicture}[remember picture,overlay,opacity=.3]%
-    \fill [green!20!yellow] {(current page.south east) rectangle (current page.north west)};%
+\newcommand\back{
+    \makeatletter
+%  \setLTR\begin{bidi@tikzpicture}[remember picture,overlay,opacity=.3]%
+  \begin{tikzpicture}[remember picture,overlay,opacity=.3]%
+    \setLTR\fill [green!20!yellow] {(current page.south east) rectangle (current page.north west)};%
 	\draw (current page.north west)+(-2em,2em) node[anchor=north west,opacity=.3]
 	{\includegraphics[width=1.1\textwidth]{logo}};
-  \end{bidi@tikzpicture}%
+%  \end{bidi@tikzpicture}%
+  \end{tikzpicture}%
+  \makeatother
 } 
+\AtBeginShipoutInit
+\AtBeginShipout{\AtBeginShipoutAddToBox{\back}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Here starts the poster
 %%---------------------------------------------------------------------------
@@ -63,7 +70,7 @@
       {
       eyecatcher=true,
       % Color style
-      bgColorOne=green!40!yellow!30,%lighteryellow,
+      bgColorOne=lighteryellow,%green!40!yellow!30,%lighteryellow,
       bgColorTwo=yellow,
       borderColor=reddishyellow,
       headerColorOne=yellow,
@@ -75,18 +82,18 @@
       textborder=rounded,
       % Format of text header
       headerborder=closed,
-      headerheight=.065\textheight,
+      headerheight=.07\textheight,
       headershape=roundedleft,
       headershade=plain,
 %      headerfont=\Large, %Sans Serif
       boxshade=plain,
-      background=plain,% user,
+      background=shadeLR,
       linewidth=2pt,
       grid=false, % show a grid mesh on poster, it's useful for debugging.
       }
  % Eye Catcher
  {
-      \includegraphics[height=0.07\textheight]{logo}
+      \includegraphics[height=0.05\textheight]{logo}
  }
  % Title
  {طراحی پوستری زیبا و در خور با کمک کلاس \lr{xebaposter}
@@ -96,12 +103,12 @@
  \\%[1em]
  {\normalsize\texttt{\lr{javadr@parsilatex.com, reinhold@kainhofer.com, baposter@brian-amberg.de}}
  \\
-۱۰ شهریور ۱۳۹۴، ۱ سپتامبر ۲۰۱۵
+نسخه ۲.۴، ۲۰ بهمن ۱۳۹۴، ۲ فوریه ۲۰۱۶
  }}
  % University logo
  {
 \begin{tabular}{r}
-    \includegraphics[height=0.07 \textheight]{logo}\\
+    \includegraphics[height=0.05 \textheight]{logo}\\
 \end{tabular}
  }
 % \end{poster}
@@ -118,7 +125,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{posterbox}[name=introduction,column=0,row=0,headershape=smallrounded]%
+\begin{posterbox}[name=introduction,column=0,row=0,headershape=smallrounded,
+headershade=plain]%
 {\textxecolor{red}{مقدمه}}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 همانطوری که می‌دانید یکی از نیازهای جامعه علمی طراحی پوستر است زیرا که در برخی کنفرانس‌ها نویسنده مقاله تنها مجاز به ارائه پوستر 
@@ -127,7 +135,7 @@
 از جمله \texttt{baposter}\footnote{\url{http://www.brian-amberg.de/uni/poster/}}
  و \texttt{beamerposter}. 
 متاسفانه این بسته‌ها با متون راست به چپ، خصوصاً فارسی کار نمی‌کنند. از آنجایی که بسته \texttt{baposter} 
-بر پایه \texttt{tikz} طراحی شده است و جناب آقای دکتر وفا خیلقی خالق 
+بر پایه \texttt{tikz} طراحی شده است و جناب آقای دکتر وفا خلیقی خالق 
 بسته‌های \texttt{bidi} و \texttt{xepersian} امکان پشتیبانی از متون 
 راست به چپ را در تصاویر تولیدی بسته \texttt{tikz} فراهم آورده‌اند پس بدین سبب به سراغ این بسته رفته و با تغییراتی در آن، 
 این بسته را با متون راست به چپ خصوصا فارسی سازگار نموده و نام \texttt{xebaposter} را بر آن برگزیدیم%
@@ -143,7 +151,7 @@
 \end{posterbox}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=usage,column=1,span=1,headershape=rounded,textborder=rectangle
-,textborder=faded]{نحوه کاربرد}
+,textborder=faded,headershade=shadelr,]{نحوه کاربرد}
 محیط اصلی پوستر، محیط \texttt{poster} است با ساختاری مانند ذیل:
 \begin{latin}
 \vspace{-2mm}
@@ -163,7 +171,8 @@
 \end{latin}
 \end{posterbox}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{posterbox}[name=classoption,column=2,span=1,headershape=rectangle,textborder=roundedsmall]
+\begin{posterbox}[name=classoption,column=2,span=1,headershape=rectangle,textborder=roundedsmall
+,headershade=shaderl]
 {گزینه‌های کلاس}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{itemize}
@@ -180,7 +189,8 @@
 \end{posterbox}
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{posterbox}[name=posteroption,column=1,span=2,below=classoption]{گزینه‌های محیط \lr{poster}}
+\begin{posterbox}[name=posteroption,column=1,span=2,below=classoption
+,headershade=shadetb]{گزینه‌های محیط \lr{poster}}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{multicols}{2}
 \begin{itemize}
@@ -204,7 +214,7 @@
 \end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=posterboxoption,column=1,span=2,below=posteroption,textborder=none
-,headershape=rectangle,headerborder=none,textborder=coils]
+,headershape=rectangle,headerborder=none,textborder=coils,headershade=shadetbinverse]
 {گزینه‌های محیط \lr{posterbox}}
     هر جعبه پوستر باید در یک محیط \texttt{posterbox} به صورت زیر تعریف گردد:
 \begin{latin}
@@ -243,19 +253,19 @@
     
         \begin{enumerate*}[label=\arabic*)]
             \item\texttt{plain} 
-            \item\texttt{shade-lr} 
-            \item\texttt{shade-rl} 
-            \item\texttt{shade-tb}
-            \item\texttt{shade-tb-inverse}
+            \item\texttt{shadelr} 
+            \item\texttt{shaderl} 
+            \item\texttt{shadetb}
+            \item\texttt{shadetbinverse}
         \end{enumerate*}
         
     \item \lr{\texttt{boxshade}}:
     
         \begin{enumerate*}[label=\arabic*)]
             \item\texttt{plain} 
-            \item\texttt{shade-lr} 
-            \item\texttt{shade-tb}
-            \item\texttt{plain} 
+            \item\texttt{shadelr} 
+            \item\texttt{shaderl}
+            \item\texttt{shadetb}            
             \item\texttt{none}
         \end{enumerate*}
     \item \lr{\texttt{headerfont=font definition}}:

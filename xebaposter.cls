@@ -23,13 +23,17 @@
 %%
 %% Copyright (C) 2007-2011 Brian Amberg
 %% Copyright (C) 2011      Reinhold Kainhofer <reinhold@kainhofer.com>
-%% Copyright (C) 2015      Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
+%% Copyright (C) 2015-2016      Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
 %%
+%% 9. February 2015: ver 2.4
+%%     - bidi ver 18.2 and later has not provice bidi@tikzpicture environment anymore, istead Vafa Khalighi the creator and maintainer of xepersian have improved the tikzpicture environment in RTL mode, so the package just use tikzpicture in both ltr and rtl poster. 
+%% 30. September 2015: ver 2.3
+%%     - 
 %% 1. September 2015: ver 2.21
 %%     - if xebaposter's user didn't set persian/latin option, by default it will be set latin but in case xepersian package is being loaded the default will be persian unless the user set latin explicitly. 
 %% 1. September 2015: ver 2.2
 %%     - persian/latin options added to the class and default is latin. From now on, this class can be used for both latin and persian poster.  The only thing that should be mentioned is the persian one must be compiled with xelatex but the latin one should be compiled with pdflatex or xelatex. For latin poster pdflatex is preferred because shading feature of tikz doesn't work properly with xelatex from TeXLive2013! the bug reported in http://tex.stackexchange.com/questions/262877.
-%% 28. August 2015: 
+%% 28. August 2015:
 %%     - A bidi@tikzpicture is used instead of tikzpicture because it causes some unwanted extra spaces in the poster.
 %% 21. August 2015: 
 %%     - The xebaposter is named after changing the baposter style to adapt with right to left text like persian.
@@ -123,12 +127,12 @@
 %%
 %%
 %% Licence: GPL
-\ProvidesClass{xebaposter}[2015/09/10 v2.21 xebaposter class]
+\ProvidesClass{xebaposter}[2016/02/09 v2.4 xebaposter class]
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \LoadClass{article}
 \typeout{baposter: Brian Amberg, 2007, 2008, 2009, 2010, 2011 | http://www.brian-amberg.de/uni/poster/}
 \typeout{baposter: Reinhold Kainhofer, 2011 | http://reinhold.kainhofer.com/}
-\typeout{xebaposter: Seiied-Mohammad-Javad Razavian, 2015 | https://github.com/javadr/xebaposter/}
+\typeout{xebaposter: Seiied-Mohammad-Javad Razavian, 2015-2016 | https://github.com/javadr/xebaposter/}
 %
 %% Define lengths only once on inclusion, such that we can make multiple posters
 \newlength{\xebaposter@basepaperwidth}%
@@ -166,11 +170,21 @@
 \RequirePackage{xkeyval}%
 \RequirePackage{calc}%
 \RequirePackage[cmyk]{xcolor}%
+\RequirePackage{ifxetex}
+%\ifxetex
+%    \def\pdftexversion{140}%
+%    \def\pgfsysdriver{pgfsys-dvipdfm.def}%
+%\fi  
 \RequirePackage{tikz}%
 \RequirePackage{pgf}%
+%\makeatletter
+%\def\pgfsys@papersize#1#2{%
+%  \pdfpageheight#2\relax%
+%  \pdfpagewidth#1\relax}
+%\makeatother
 \RequirePackage{ifthen}%
 \RequirePackage[T1]{fontenc}%
-\RequirePackage{biditools}
+%\RequirePackage{biditools}
 %\RequirePackage[l2tabu, orthodox]{nag}%
 \usetikzlibrary{decorations}%
 \usetikzlibrary{fadings}%
@@ -302,7 +316,7 @@
 \typeout{Paperheight=\the\xebaposter@finalpaperheight}%
 \typeout{BasePaperwidth=\the\xebaposter@basepaperwidth}%
 \typeout{BasePaperheight=\the\xebaposter@basepaperheight}%
-\usepackage[
+\RequirePackage[
    paperwidth=\xebaposter@basepaperwidth,%
    paperheight=\xebaposter@basepaperheight,%
    tmargin=\xebaposter@basemargin,%
@@ -311,7 +325,7 @@
    rmargin=\xebaposter@basemarginright,%
    ]{geometry}%
 %
-\usepackage{pgfpages}%
+\RequirePackage{pgfpages}
 \if@landscape
 \if@geometryKnowsThisSize
 \pgfpagesuselayout{resize to}[physical paper width=\xebaposter@finalpaperheight,physical paper height=\xebaposter@finalpaperwidth]%
@@ -414,7 +428,7 @@
   \renewcommand{\xebaposterBoxDrawBorder}[1]{\xebaposter@drawborder@rectangle{##1}}%
 }%
 %
-% boxshade can be one of: shadeLR, shadeTB, plain, none
+% boxshade can be one of: shadelr, shaderl, shadetb, plain, none
 \define@choicekey*+[ba]{posterbox}{boxshade}%
     [\xebaposter@box@boxshade\xebaposter@box@boxshadenr]%
     {shadelr,shaderl,shadetb,plain,none} [none] {%
@@ -427,7 +441,7 @@
   \renewcommand{\xebaposterBoxDrawBackground}[2]{\xebaposter@box@drawbackground@none{##1}{##2}}%
 }%
 %
-% headershade can be one of: shade-lr,shade-rl, shade-tb, shade-tb-inverse, plain
+% headershade can be one of: shadelr,shaderl, shadetb, shadetbinverse, plain
 \define@choicekey*+[ba]{posterbox}{headershade}%
     [\xebaposter@box@headershade\xebaposter@box@headershadenr]%
     {shadelr,shaderl, shadetb, shadetbinverse, plain} [shadelr] {%
@@ -535,7 +549,7 @@
   headerColorOne=red,%
   headerColorTwo=brown,%
   headershape=rectangle,%
-  headershade=shadeLR,%
+  headershade=shadelr,%
   headerborder=none,%
   boxheaderheight=2em,%
 }{}%
@@ -548,65 +562,34 @@
 %
 \newcommand{\xebaposter@background@shaderl}[2]{%
   \debug{xebaposter: Using shade right left background.}%
-\if@xebaposter@persian
-    {\setLTR\begin{bidi@tikzpicture}[remember picture,overlay]%
-    \shade [shading=axis,left color=#1,right color=#2] (current page.north east)%
-           rectangle(current page.south west);%
-  \end{bidi@tikzpicture}}%
-\else
     \begin{tikzpicture}[remember picture,overlay]%
-    \shade [shading=axis,left color=#1,right color=#2] (current page.north east)%
+    \setLTR\shade [shading=axis,left color=#2,right color=#1] (current page.north east)%
            rectangle(current page.south west);%
   \end{tikzpicture}%
-\fi 
 }%
 \newcommand{\xebaposter@background@shadelr}[2]{%
   \debug{xebaposter: Using shade left right background.}%
-\if@xebaposter@persian
-    {\setLTR\begin{bidi@tikzpicture}[remember picture,overlay]%
-    \shade [shading=axis,left color=#1,right color=#2] (current page.north west)%
-           rectangle(current page.south east);%
-  \end{bidi@tikzpicture}}%
-\else 
     \begin{tikzpicture}[remember picture,overlay]%
-    \shade [shading=axis,left color=#1,right color=#2] (current page.north west)%
+    \setLTR\shade [shading=axis,left color=#1,right color=#2] (current page.north west)%
            rectangle(current page.south east);%
   \end{tikzpicture}%
-\fi 
 }%
 \newcommand{\xebaposter@background@shadetb}[2]{%
   \debug{xebaposter: Using shade top to bottom background.}%
-\if@xebaposter@persian
-    {\setLTR\begin{bidi@tikzpicture}[remember picture,overlay]%
-    \shade [shading=axis,top color=#1,bottom color=#2] (current page.north west)%
-           rectangle(current page.south east);%
-  \end{bidi@tikzpicture}}%
-\else 
     \begin{tikzpicture}[remember picture,overlay]%
-    \shade [shading=axis,top color=#1,bottom color=#2] (current page.north west)%
+    \setLTR\shade [shading=axis,top color=#1,bottom color=#2] (current page.north west)%
            rectangle(current page.south east);%
   \end{tikzpicture}%
-\fi 
 }%
 \newcommand{\xebaposter@background@plain}[2]{%
   \debug{xebaposter: Using plain background.}%
-\if@xebaposter@persian
-  {\setLTR\begin{bidi@tikzpicture}[remember picture,overlay]%
-    \fill [#1] {(current page.north west) rectangle (current page.south east)};%
-  \end{bidi@tikzpicture}}%
-\else 
   \begin{tikzpicture}[remember picture,overlay]%
-    \fill [#1] {(current page.north west) rectangle (current page.south east)};%
+    \setLTR\fill [#1] {(current page.north west) rectangle (current page.south east)};%
   \end{tikzpicture}%
-\fi   
 }%
 \newcommand{\xebaposter@background@user}[2]{%
   \debug{xebaposter: Using user background.}%
-\if@xebaposter@persian
-    {\setLTR\xebaposter@backgroundCmd}%
-\else
     {\xebaposter@backgroundCmd}%
-\fi    
 }%
 \newcommand{\xebaposter@background@none}[2]{%
   \debug{xebaposter: Using no background.}%
@@ -663,6 +646,10 @@
 }%
 \newcommand{\xebaposter@box@drawbackground@shadelr}[2]{%
   \tikzstyle{box colors}=[shading=axis, left color=#1, right color=#2]%
+  \fill[box colors] \xebaposterBoxGetShape;%
+}%
+\newcommand{\xebaposter@box@drawbackground@shaderl}[2]{%
+  \tikzstyle{box colors}=[shading=axis, left color=#2, right color=#1]%
   \fill[box colors] \xebaposterBoxGetShape;%
 }%
 \newcommand{\xebaposter@box@drawbackground@shadetb}[2]{%
@@ -815,8 +802,11 @@
 \newcommand{\xebaposter@box@headershade@shadetbinverse}[3]{%
     \debug{Header-Shade: Shade Top - Bottom - Inverse }%
     \tikzstyle{header colors}=[%
-      top color=#1!75!#2,%
-      bottom color=#2!100!#1,%
+      color=#3,%
+%      top color=#1!75!#2,%
+%      bottom color=#2!100!#1,%
+      top color=#2,%
+      bottom color=#1,%
       shading angle=20%
     ]%
     \colorlet{xebaposterHeaderFontColor}{white}%
@@ -1137,12 +1127,7 @@
   \xebaposterPosterDrawBackground{bgColorOne}{bgColorTwo}%
   %% Poster header/title
   \hspace{-1.5em}%
-\if@xebaposter@persian
-  \bgroup\setLTR
-  \begin{bidi@tikzpicture}[inner sep=0pt,outer sep=0pt,line width=0.05em,align=right]%
-\else
   \begin{tikzpicture}[inner sep=0pt,outer sep=0pt,line width=0.05em,align=right]%
-\fi 
     \useasboundingbox (0em,0em) rectangle(\textwidth,\textheight);%
     \path[shape=coordinate]%
       (0pt,\colheight) coordinate(north west) (\textwidth,\colheight) coordinate(north east)%
@@ -1221,12 +1206,7 @@
         \draw[draw=green,draw opacity=0.7] (0pt,\colheight-\y\colheight)  --%
             (\textwidth,\colheight-\y\colheight) node[anchor=west] {\y};%
     \fi%
-\if@xebaposter@persian      
-    \end{bidi@tikzpicture}%
-    \egroup
-\else
   \end{tikzpicture}%
-\fi  
 %  \xkvview{}
  \par
   }% END poster end

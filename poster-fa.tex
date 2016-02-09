@@ -36,11 +36,11 @@
 %%% Setting User Defined Background %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %if you want to use your preferred background, you should set background=user in poster settings.
 \background{
-  \begin{bidi@tikzpicture}[remember picture,overlay]%
+  \begin{tikzpicture}[remember picture,overlay]%
     \fill [yellow!20] {(current page.south east) rectangle (current page.north west)};%
 	\draw (current page.center)+(0pt,0pt) node[anchor=center,opacity=.1]
 	{\includegraphics[width=1.1\textwidth]{shariflogo}};
-  \end{bidi@tikzpicture}%
+  \end{tikzpicture}%
 } 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Here starts the poster
@@ -64,13 +64,13 @@
       {
       eyecatcher=true,
       % Color style
-      bgColorOne=lighteryellow,
-      bgColorTwo=lightestyellow,
+      bgColorOne=lightyellow,
+      bgColorTwo=yellow,
       borderColor=reddishyellow,
       headerColorOne=yellow,
       headerColorTwo=reddishyellow,
-      headerFontColor=cyan,
-      boxColorOne=lightyellow,
+%      headerFontColor=silver,
+      boxColorOne=red,
       boxColorTwo=lighteryellow,
       % Format of textbox
       textborder=faded,
@@ -80,8 +80,8 @@
       headershape=roundedleft,
       headershade=plain,
 %      headerfont=\Large, %Sans Serif
-      boxshade=plain,
-      background=user,
+      boxshade=shadetb,%plain,
+      background=user,%plain,
       linewidth=2pt,
       grid=false,
       }

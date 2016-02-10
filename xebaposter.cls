@@ -25,6 +25,8 @@
 %% Copyright (C) 2011      Reinhold Kainhofer <reinhold@kainhofer.com>
 %% Copyright (C) 2015-2016      Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
 %%
+%% 10. February 2015: ver 2.41
+%%     - Correcting two typos in the package's documentaion.
 %% 9. February 2015: ver 2.4
 %%     - bidi ver 18.2 and later has not provice bidi@tikzpicture environment anymore, istead Vafa Khalighi the creator and maintainer of xepersian have improved the tikzpicture environment in RTL mode, so the package just use tikzpicture in both ltr and rtl poster. 
 %% 30. September 2015: ver 2.3

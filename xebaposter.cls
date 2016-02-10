@@ -129,7 +129,7 @@
 %%
 %%
 %% Licence: GPL
-\ProvidesClass{xebaposter}[2016/02/09 v2.4 xebaposter class]
+\ProvidesClass{xebaposter}[2016/02/10 v2.41 xebaposter class]
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \LoadClass{article}
 \typeout{baposter: Brian Amberg, 2007, 2008, 2009, 2010, 2011 | http://www.brian-amberg.de/uni/poster/}

@@ -25,6 +25,8 @@
 %% Copyright (C) 2011      Reinhold Kainhofer <reinhold@kainhofer.com>
 %% Copyright (C) 2015-2016      Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
 %%
+%% 11. February 2015: ver 2.42
+%%     - Correcting some other typos in the package's documentaion.
 %% 10. February 2015: ver 2.41
 %%     - Correcting two typos in the package's documentaion.
 %% 9. February 2015: ver 2.4
@@ -129,7 +131,7 @@
 %%
 %%
 %% Licence: GPL
-\ProvidesClass{xebaposter}[2016/02/10 v2.41 xebaposter class]
+\ProvidesClass{xebaposter}[2016/02/11 v2.42 xebaposter class]
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \LoadClass{article}
 \typeout{baposter: Brian Amberg, 2007, 2008, 2009, 2010, 2011 | http://www.brian-amberg.de/uni/poster/}

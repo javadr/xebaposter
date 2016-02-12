@@ -13,8 +13,9 @@
 \setlist{noitemsep}% Save space in lists.
 
 \usepackage{atbegshi}
-\usepackage{xepersian}
+\usepackage[Kashida=off]{xepersian}
 \settextfont{Yas}
+\setdigitfont{Yas}
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  %%%% Some math symbols used in the text
@@ -103,7 +104,7 @@
  \\%[1em]
  {\normalsize\texttt{\lr{javadr@parsilatex.com, reinhold@kainhofer.com, baposter@brian-amberg.de}}
  \\
-نسخه ۲.۴۱، ۲۱ بهمن ۱۳۹۴، ۱۰ فوریه ۲۰۱۶
+نسخه $2.42$، ۲۲ بهمن ۱۳۹۴، ۱۱ فوریه ۲۰۱۶
  }}
  % University logo
  {
@@ -180,7 +181,7 @@ headershade=plain]%
      چینش پوستر فارسی/لاتین.% پیش‌فرض پوستر لاتین است.
     \item \texttt{portrait/landscape}: طرح‌بندی صفحه
     \item \lr{\texttt{a0paper, a1paper, a2paper, a3paper, a4paper, archE}}: سایز صفحات از پیش تعریف‌شده
-    \item \lr{\texttt{paperwidth=length, paperheight=length}}: تنظیم عرض/ارتفاع صفحه. 
+    \item \lr{\small\texttt{paperwidth=length, paperheight=length}}: تنظیم عرض/ارتفاع صفحه. 
     این گزینه‌ها را بهیچوجه با صفحات از پیش‌تعریف شده بکار نبرید.
     \item \texttt{margin=length}: حاشیه صفحه
     \item \lr{\texttt{fontscale=real number}}:
@@ -313,10 +314,11 @@ headershade=plain]%
 ,textborder=triangles]{قدردانی}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 با تشکر از دکتر \lr{Brian} خالق کلاس پوستر و تشکر ویژه از جناب آقای دکتر وفا خلیقی بخاطر زحماتی که برای فارسی‌نویسی در
-محیط زی‌لاتک انجام‌ داده‌اند و دکتر محمود امین‌طوسی به سبب پیشنهاد نام زیباپوستر و گروه پارسی‌لاتک برای تست این کلاس.
+محیط زی‌لاتک انجام‌ داده‌اند%\footnote{بدون پشتیبانی زی‌پرشین از محیط \lr{tikzpicture} فارسی سازی این کلاس ممکن نبود.} 
+و دکتر محمود امین‌طوسی به سبب پیشنهاد نام زیباپوستر و گروه پارسی‌لاتک برای تست این کلاس.
 
 \footnotetext{
-نسخه ۲.۲ بر خلاف نسخه اولیّه هر دو نوع پوستر پارسی و لاتین را پشتیبانی می‌کند. }
+نسخه $2.2$ بر خلاف نسخه اولیّه هر دو نوع پوستر پارسی و لاتین را پشتیبانی می‌کند. }
 \end{posterbox} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{poster}

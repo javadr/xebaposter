@@ -25,6 +25,8 @@
 %% Copyright (C) 2011      Reinhold Kainhofer <reinhold@kainhofer.com>
 %% Copyright (C) 2015-2016      Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
 %%
+%% 1. September 2016: ver 2.5
+%%     -In persian mode with gird enabled option, grid numbers set on left side of the sheet.
 %% 11. February 2015: ver 2.42
 %%     - Correcting some other typos in the package's documentaion.
 %% 10. February 2015: ver 2.41
@@ -1207,8 +1209,13 @@
       %% Explicitly list all percentages, because with {0.0, 0.1, ..., 1.0} we
       %% get rounding errors in the displayed numbers!
       \foreach \y in {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0}%
-        \draw[draw=green,draw opacity=0.7] (0pt,\colheight-\y\colheight)  --%
-            (\textwidth,\colheight-\y\colheight) node[anchor=west] {\y};%
+        {\if@xebaposter@persian
+            \draw[draw=green,draw opacity=0.7]  (\textwidth,\colheight-\y\colheight) --%
+                (0pt,\colheight-\y\colheight) node[anchor=east] {\y};%        
+        \else
+            \draw[draw=green,draw opacity=0.7] (0pt,\colheight-\y\colheight)  --%
+                (\textwidth,\colheight-\y\colheight) node[anchor=west] {\y};%
+        \fi|}%    
     \fi%
   \end{tikzpicture}%
 %  \xkvview{}

@@ -42,7 +42,7 @@
 %if you want to use your preferred background, you should set background=user in poster settings.
 \background{
   \begin{tikzpicture}[remember picture,overlay,opacity=.3]%
-    \fill [green!20!yellow] {(current page.south east) rectangle (current page.north west)};%
+    \fill [yellow!80!gray] {(current page.south east) rectangle (current page.north west)};%
 %	\draw (current page.south west)+(12em,0em) node[anchor=south west,opacity=.3]
 %	{\includegraphics[width=.2\textwidth]{logo}};
   \end{tikzpicture}%
@@ -120,7 +120,7 @@
  \\%[1em]
  {\normalsize\texttt{\lr{javadr@parsilatex.com, reinhold@kainhofer.com, baposter@brian-amberg.de}}
  \\
-نسخه $2.5$، $11$ شهریور $1395$، ۱ سپتامبر $2016$
+نسخه $2.51$، $22$ شهریور $1395$، $12$ سپتامبر $2016$
  }}
  % University logo
  {
@@ -348,14 +348,20 @@ textborder=none
 ,headershape=rectangle,headerborder=none,textborder=coils,headershade=shadetbinverse]
 {گزینه‌های محیط \lr{posterbox}}
     هر جعبه پوستر باید در یک محیط \texttt{posterbox} به صورت زیر تعریف گردد:
-\begin{latin}
-\vspace{-3mm}
-\begin{verbatim}
-    \begin{posterbox}[ key=value options ]{ PosterBox Title }
-        Contents
+%\begin{latin}
+\vspace{-1mm}
+%\begin{verbatim}
+%    \begin{posterbox}[ key=value options ]{ PosterBox Title }
+%        Contents
+%    \end{posterbox}
+%\end{verbatim}
+%\end{latin}
+\begin{lstlisting}[escapechar={|}]
+    \begin{posterbox}[ |\rl{ گزینه‌های کلید=مقدار}| ]{ |\rl{عنوان جعبه‌پوستر}| }
+        |\rl{محتوای جعبه‌پوستر}|
     \end{posterbox}
-\end{verbatim}
-\end{latin}
+\end{lstlisting}
+\vspace{-4mm}
 \begin{itemize}
     \item \lr{\texttt{name=box name}}: نام جعبه را مشخص می‌کند. این نام در تعیین موقعیت دیگر جعبه‌ها نسبت به آن بکار آید.
     \item \lr{\texttt{column=column number}}: مشخص می‌کند که جعبه در کدام ستون قرار گیرد 

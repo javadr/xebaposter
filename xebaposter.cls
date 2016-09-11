@@ -27,6 +27,7 @@
 %%
 %% 1. September 2016: ver 2.5
 %%     -In persian mode with gird enabled option, grid numbers set on left side of the sheet.
+%%     -There is no need to set \setLTR before \shade or \fill command, it fixed in new version of bidi.
 %% 11. February 2015: ver 2.42
 %%     - Correcting some other typos in the package's documentaion.
 %% 10. February 2015: ver 2.41
@@ -569,28 +570,28 @@
 \newcommand{\xebaposter@background@shaderl}[2]{%
   \debug{xebaposter: Using shade right left background.}%
     \begin{tikzpicture}[remember picture,overlay]%
-    \setLTR\shade [shading=axis,left color=#2,right color=#1] (current page.north east)%
+    \shade [shading=axis,left color=#2,right color=#1] (current page.north east)%
            rectangle(current page.south west);%
   \end{tikzpicture}%
 }%
 \newcommand{\xebaposter@background@shadelr}[2]{%
   \debug{xebaposter: Using shade left right background.}%
     \begin{tikzpicture}[remember picture,overlay]%
-    \setLTR\shade [shading=axis,left color=#1,right color=#2] (current page.north west)%
+    \shade [shading=axis,left color=#1,right color=#2] (current page.north west)%
            rectangle(current page.south east);%
   \end{tikzpicture}%
 }%
 \newcommand{\xebaposter@background@shadetb}[2]{%
   \debug{xebaposter: Using shade top to bottom background.}%
     \begin{tikzpicture}[remember picture,overlay]%
-    \setLTR\shade [shading=axis,top color=#1,bottom color=#2] (current page.north west)%
+    \shade [shading=axis,top color=#1,bottom color=#2] (current page.north west)%
            rectangle(current page.south east);%
   \end{tikzpicture}%
 }%
 \newcommand{\xebaposter@background@plain}[2]{%
   \debug{xebaposter: Using plain background.}%
   \begin{tikzpicture}[remember picture,overlay]%
-    \setLTR\fill [#1] {(current page.north west) rectangle (current page.south east)};%
+    \fill [#1] {(current page.north west) rectangle (current page.south east)};%
   \end{tikzpicture}%
 }%
 \newcommand{\xebaposter@background@user}[2]{%

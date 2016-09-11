@@ -26,9 +26,9 @@
 %% Copyright (C) 2015-2016      Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
 %%
 %% 12. September 2016: ver 2.51
-%%     -typo in package inf.
+%%     - typo in package inf.
 %% 1. September 2016: ver 2.5
-%%     -In persian mode with gird enabled option, grid numbers set on left side of the sheet.
+%%     - In persian mode with gird enabled option, grid numbers set on left side of the sheet.
 %%     -There is no need to set \setLTR before \shade or \fill command, it fixed in new version of bidi.
 %% 11. February 2015: ver 2.42
 %%     - Correcting some other typos in the package's documentaion.

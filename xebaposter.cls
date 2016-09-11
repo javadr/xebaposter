@@ -1,7 +1,7 @@
 %%
 %% This is file `xebaposter.cls'
 %% 
-%%% Copyright © 2015 by Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
+%% Copyright © 2015-2016 by Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
 %% of this license or (at your option) any later version.
@@ -25,6 +25,8 @@
 %% Copyright (C) 2011      Reinhold Kainhofer <reinhold@kainhofer.com>
 %% Copyright (C) 2015-2016      Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
 %%
+%% 12. September 2016: ver 2.51
+%%     -minor bug in package inf.
 %% 1. September 2016: ver 2.5
 %%     -In persian mode with gird enabled option, grid numbers set on left side of the sheet.
 %%     -There is no need to set \setLTR before \shade or \fill command, it fixed in new version of bidi.
@@ -134,7 +136,7 @@
 %%
 %%
 %% Licence: GPL
-\ProvidesClass{xebaposter}[2016/02/11 v2.42 xebaposter class]
+\ProvidesClass{xebaposter}[2016/09/12 v2.51 xebaposter class]
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \LoadClass{article}
 \typeout{baposter: Brian Amberg, 2007, 2008, 2009, 2010, 2011 | http://www.brian-amberg.de/uni/poster/}

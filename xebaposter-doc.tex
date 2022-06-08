@@ -28,7 +28,7 @@
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  %%%% Some math symbols used in the text
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- % Format 
+ % Format
 % \newcommand{\RotUP}[1]{\begin{sideways}#1\end{sideways}}
 
 
@@ -61,7 +61,7 @@
 %%  \end{bidi@tikzpicture}%
 %  \end{tikzpicture}%
 %  \makeatother
-%} 
+%}
 %\AtBeginShipoutInit
 %\AtBeginShipout{\AtBeginShipoutAddToBox{\back}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,7 +92,7 @@
       headerColorOne=yellow,
       headerColorTwo=reddishyellow,
       headerFontColor=cyan,
-      boxColorOne=lightyellow,      
+      boxColorOne=lightyellow,
       boxColorTwo=lighteryellow,
       % Format of textbox
       textborder=rounded,
@@ -120,13 +120,11 @@
  \\%[1em]
  {\normalsize\texttt{\lr{javadr@parsilatex.com, reinhold@kainhofer.com, baposter@brian-amberg.de}}
  \\
-نسخه $2.51$، $22$ شهریور $1395$، $12$ سپتامبر $2016$
+نسخه $2.53$، $18$ خرداد $1401$، $8$ ژوئن $2022$
  }}
  % University logo
  {
-\begin{tabular}{r}
-    \includegraphics[height=0.05 \textheight]{logo}\\
-\end{tabular}
+    \includegraphics[height=0.05\textheight]{logo}
  }
 % \end{poster}
 % \end{document}
@@ -134,10 +132,10 @@
 %%% Now define the boxes that make up the poster
 %%%---------------------------------------------------------------------------
 %%% Each box has a name and can be placed absolutely or relatively.
-%%% The only inconvenience is that you can only specify a relative position 
-%%% towards an already declared box. So if you have a box attached to the 
-%%% bottom, one to the top and a third one which should be inbetween, you 
-%%% have to specify the top and bottom boxes before you specify the middle 
+%%% The only inconvenience is that you can only specify a relative position
+%%% towards an already declared box. So if you have a box attached to the
+%%% bottom, one to the top and a third one which should be inbetween, you
+%%% have to specify the top and bottom boxes before you specify the middle
 %%% box.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -146,27 +144,27 @@
 headershade=plain]%
 {\textxecolor{red}{مقدمه}}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-همانطوری که می‌دانید یکی از نیازهای جامعه علمی طراحی پوستر است زیرا که در برخی کنفرانس‌ها نویسنده مقاله تنها مجاز به ارائه پوستر 
+همانطوری که می‌دانید یکی از نیازهای جامعه علمی طراحی پوستر است زیرا که در برخی کنفرانس‌ها نویسنده مقاله تنها مجاز به ارائه پوستر
 می‌گردد. در این راستا یک کلاس بسیار ساده به نام \texttt{a0poster} وجود دارد که در عین سادگی کار با آن، قابلیت‌های زیادی ندارد.
-از طرفی دیگر کلاس‌های زیبایی برای تولید پوستر توسط افرادی دیگر طراحی شده است 
+از طرفی دیگر کلاس‌های زیبایی برای تولید پوستر توسط افرادی دیگر طراحی شده است
 از جمله \texttt{baposter}\footnote{\url{http://www.brian-amberg.de/uni/poster/}}،
 \texttt{beamerposter} و \texttt{tikzposter}.
-متاسفانه این کلاس‌ها با متون راست به چپ، خصوصاً فارسی کار نمی‌کنند لذا نیاز به کلاسی که بتوان با آن پوستر فارسی تولید کرد 
+متاسفانه این کلاس‌ها با متون راست به چپ، خصوصاً فارسی کار نمی‌کنند لذا نیاز به کلاسی که بتوان با آن پوستر فارسی تولید کرد
 ضروری می‌نمود. کلاس \texttt{xebaposter}% --بخوانید زیباپوستر--%
-%از آنجایی که کلاس \texttt{baposter} 
-%بر پایهٔ \texttt{tikz} طراحی شده است و جناب آقای دکتر وفا خلیقی خالق 
-%بسته‌های \texttt{bidi} و \texttt{xepersian} امکان پشتیبانی از متون 
-%راست به چپ را در تصاویر تولیدی بسته \texttt{tikz} فراهم آورده‌اند پس بدین سبب به سراغ این کلاس رفته و با تغییراتی در آن، 
+%از آنجایی که کلاس \texttt{baposter}
+%بر پایهٔ \texttt{tikz} طراحی شده است و جناب آقای دکتر وفا خلیقی خالق
+%بسته‌های \texttt{bidi} و \texttt{xepersian} امکان پشتیبانی از متون
+%راست به چپ را در تصاویر تولیدی بسته \texttt{tikz} فراهم آورده‌اند پس بدین سبب به سراغ این کلاس رفته و با تغییراتی در آن،
 %این کلاس را با متون راست به چپ خصوصا فارسی سازگار نموده و نام \texttt{xebaposter} را بر آن برگزیدیم%
 %\footnote{نگارنده ابتدا نام \lr{baposterRL} را انتخاب کرده بود لکن با پیشنهاد دکتر محمود امین‌طوسی نام فعلی را برگزید.}
 --بخوانید زیباپوستر--
- بر پایهٔ کلاس \texttt{baposter} با افزودن 
-امکاناتی بدین منظور بنا نهاده شده است. 
-%البته ناگفته نماند که پوسترهای تولیدی با بسته \texttt{beamerposter} زیبایی زاید الوصوفی دارند لکن به سبب اینکه بسته‌های 
-%بایدی و زی‌پرشین فعلا از بسته \texttt{beamer} پشتیبانی نمی‌کنند --آنهم به سبب وجود باگ‌هایی در موتور زی‌تک-- امکان 
+ بر پایهٔ کلاس \texttt{baposter} با افزودن
+امکاناتی بدین منظور بنا نهاده شده است.
+%البته ناگفته نماند که پوسترهای تولیدی با بسته \texttt{beamerposter} زیبایی زاید الوصوفی دارند لکن به سبب اینکه بسته‌های
+%بایدی و زی‌پرشین فعلا از بسته \texttt{beamer} پشتیبانی نمی‌کنند --آنهم به سبب وجود باگ‌هایی در موتور زی‌تک-- امکان
 %فارسی‌سازی این بسته وجود نداشت پس بدین سبب تنها انتخابمان همان بسته اولیه \texttt{baposter} شد.
-متاسفانه به سبب وجود باگ‌\footnote{گزارش شده در \url{http://qa.parsilatex.com/10715} 
-و \url{http://tex.stackexchange.com/questions/262877}} در موتور زی‌لاتک فعلاً ویژگی محوشدگی رنگ را 
+متاسفانه به سبب وجود باگ‌\footnote{گزارش شده در \url{http://qa.parsilatex.com/10715}
+و \url{http://tex.stackexchange.com/questions/262877}} در موتور زی‌لاتک فعلاً ویژگی محوشدگی رنگ را
 در حالت فارسی نخواهیم داشت.%
 %\footnote{برای مشاهده
 %نمونه‌هایی از این بسته‌ها می‌توانید به \url{http://www.latextemplates.com/cat/conference-posters} مراجعه نمایید.}
@@ -175,16 +173,16 @@ headershade=plain]%
 \begin{posterbox}[name=posterparts,column=0,span=1,below=introduction,textborder=roundedleft]
 {\textxecolor{blue}{اجزاء تشکیل دهنده زیباپوستر}}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-زیباپوستر صفحه پوستر را به دو بخش سرآمد  و محتوی تقسیم می‌کند. خود سرآمد نیز از سه بخش آی‌کچر، عنوان و لوگوی موسسه تشکیل 
-شده است که بهمین ترتیب نمایش داده می‌شود. بخش آی‌کچر اختیاری است و می‌توان با گزینه \texttt{eyecatcher} آن را فعال یا غیرفعال 
-نمود(\texttt{true,false}). در صورت عدم وجود آی‌کچر، عنوان و نام نویسنده‌(ها) راست چین خواهد شد و در صورت وجود آن به صورت 
+زیباپوستر صفحه پوستر را به دو بخش سرآمد  و محتوی تقسیم می‌کند. خود سرآمد نیز از سه بخش آی‌کچر، عنوان و لوگوی موسسه تشکیل
+شده است که بهمین ترتیب نمایش داده می‌شود. بخش آی‌کچر اختیاری است و می‌توان با گزینه \texttt{eyecatcher} آن را فعال یا غیرفعال
+نمود(\texttt{true,false}). در صورت عدم وجود آی‌کچر، عنوان و نام نویسنده‌(ها) راست چین خواهد شد و در صورت وجود آن به صورت
 وسط‌چین در خواهند آمد.
 
-بخش محتوای پوستر شامل تعدادی جعبه \texttt{tikz} است که حاوی مطالب پوستر خواهند بود. این جعبه‌ها از طریق 
-محیط \texttt{posterbox} تعریف می‌شوند. تمامی این جعبه‌ها باید درون محیط \lr{poster} تعریف شده باشند. 
-هر جعبه نیز از دو بخش عنوان و محتوی تشکیل شده است. و نهایتا پشت زمینه پوستر است که در حال حاضر تنها می‌تواند یک رنگ ساده 
-باشد و یا اصلا چیزی نباشد و یا به اختیار کاربر قرار گیرد تا برای مثال در صورت تمایل یک تصویر پشت زمینه قرار دهد --البته همانطور که 
-در بالا اشاره گردید برخی قابلیت‌های محیط \lr{tikz} از جمله محوشدگی قابل استفاده نمی‌باشند--. 
+بخش محتوای پوستر شامل تعدادی جعبه \texttt{tikz} است که حاوی مطالب پوستر خواهند بود. این جعبه‌ها از طریق
+محیط \texttt{posterbox} تعریف می‌شوند. تمامی این جعبه‌ها باید درون محیط \lr{poster} تعریف شده باشند.
+هر جعبه نیز از دو بخش عنوان و محتوی تشکیل شده است. و نهایتا پشت زمینه پوستر است که در حال حاضر تنها می‌تواند یک رنگ ساده
+باشد و یا اصلا چیزی نباشد و یا به اختیار کاربر قرار گیرد تا برای مثال در صورت تمایل یک تصویر پشت زمینه قرار دهد --البته همانطور که
+در بالا اشاره گردید برخی قابلیت‌های محیط \lr{tikz} از جمله محوشدگی قابل استفاده نمی‌باشند--.
 \end{posterbox}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=setting,column=0,span=1,below=posterparts%
@@ -192,9 +190,9 @@ headershade=plain]%
 {\textxecolor{brown}{تنظیمـــــــــات (عمومی یا محلی؟!)}}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 کاربر می‌توانید تنظیماتی را که برای رنگ و حالت جعبه‌ها تعریف شده است را به کلی یا جزئی تغییر دهد. بدین معنی که برای یکبار همان
-ابتدای تعریف محیط \lr{poster} که این تنظیمات تعریف می‌شوند بر تمامی جعبه‌ها قابل اعمال هستند لکن این امکان نیز وجود دارد 
-که هر جعبه را به طور خاص شخصی‌سازی نمود. در این پوستر سعی شده تا با اتخاذ 
-شخصی‌سازی هر جعبه گزینه‌های مختلف موجود تا آنجا که ممکن است نشان داده شود. 
+ابتدای تعریف محیط \lr{poster} که این تنظیمات تعریف می‌شوند بر تمامی جعبه‌ها قابل اعمال هستند لکن این امکان نیز وجود دارد
+که هر جعبه را به طور خاص شخصی‌سازی نمود. در این پوستر سعی شده تا با اتخاذ
+شخصی‌سازی هر جعبه گزینه‌های مختلف موجود تا آنجا که ممکن است نشان داده شود.
 \end{posterbox}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=usage,column=1,span=1,headershape=rounded,textborder=rectangle
@@ -206,12 +204,12 @@ headershade=plain]%
 %\begin{poster}
 
 %    { key=value options }
-%    { Eye Catcher, empty 
+%    { Eye Catcher, empty
 %       if option eyecatcher=false}
 %    { Poster Title }
 %    { Poster Authors }
 %    { University Logo}
-%    
+%
 %    Definition of the boxes
 %\end{poster}
 %\end{verbatim}
@@ -244,19 +242,19 @@ headershade=plain]%
     \item \texttt{persian/latin}:
      چینش پوستر فارسی/لاتین.% پیش‌فرض پوستر لاتین است.
     \item \texttt{portrait/landscape}: طرح‌بندی صفحه
-    \item \lr{\texttt{a0paper, a1paper, a2paper, a3paper, a4paper, archE, ...}}: 
-    سایز صفحات از پیش تعریف‌شده‌؛ تمامی اندازه‌های قابل پیشتیبانی توسط کلاس را در جدول زیر مشاهد نمایید. 
-    \item \lr{\small\texttt{paperwidth=length, paperheight=length}}: تنظیم عرض/ارتفاع صفحه. 
+    \item \lr{\texttt{a0paper, a1paper, a2paper, a3paper, a4paper, archE, ...}}:
+    سایز صفحات از پیش تعریف‌شده‌؛ تمامی اندازه‌های قابل پیشتیبانی توسط کلاس را در جدول زیر مشاهد نمایید.
+    \item \lr{\small\texttt{paperwidth=length, paperheight=length}}: تنظیم عرض/ارتفاع صفحه.
     این گزینه‌ها را بهیچوجه با اندازه‌های از پیش‌تعریف شده بکار نبرید.
     \item \texttt{margin=length}: حاشیه صفحه
     \item \lr{\texttt{fontscale=real number}}:
-    مقیاس‌پذیری پوستر. پوستر با اندازه فونت‌های استاندارد روی یک کاغذ 
+    مقیاس‌پذیری پوستر. پوستر با اندازه فونت‌های استاندارد روی یک کاغذ
     \lr{\Verb|fontscale| $\times$ \Verb|papersize|}
-    حروفچینی می‌شود و سپس به مقدار  \lr{1/\Verb|fontscale|} نسبت به اندازه صفحه‌ٔ انتخاب شده تغییر اندازه می‌دهد. 
-    این کار سبب می‌شود تا اندازه فونت‌ها ظاهری مناسب داشته باشد لذا اگر نیاز دارید تا حجم بیشتری را در یک صفحه جا دهید 
-    اندازه \Verb|fontscale| را افزایش دهید تا فونت کوچکتری بدست آورید.% لکن مطمئن شوید که اندازه‌های خیلی کوچکی 
-%    را بکار نمی‌برید زیرا که در این صورت پوستر ظاهر نازیبایی خواهد داشت. 
-    مقدار پیش‌فرض \lr{\Verb|2.92|}. 
+    حروفچینی می‌شود و سپس به مقدار  \lr{1/\Verb|fontscale|} نسبت به اندازه صفحه‌ٔ انتخاب شده تغییر اندازه می‌دهد.
+    این کار سبب می‌شود تا اندازه فونت‌ها ظاهری مناسب داشته باشد لذا اگر نیاز دارید تا حجم بیشتری را در یک صفحه جا دهید
+    اندازه \Verb|fontscale| را افزایش دهید تا فونت کوچکتری بدست آورید.% لکن مطمئن شوید که اندازه‌های خیلی کوچکی
+%    را بکار نمی‌برید زیرا که در این صورت پوستر ظاهر نازیبایی خواهد داشت.
+    مقدار پیش‌فرض \lr{\Verb|2.92|}.
     \item \texttt{debug}: چاپ اطلاعات مرتبط با جعبه‌ها در خروجی. این گزینه‌ در اشکال‌زدایی بکار می‌آید.
 \end{itemize}
 
@@ -289,7 +287,7 @@ headershade=plain]%
             b4paper &  250mm & 353mm \\\hline
             b5paper &  176mm & 250mm \\\hline
             b6paper &  125mm & 176mm \\\hline
-            ansiapaper &  8.5in & 11in \\\hline                                                                                                                     
+            ansiapaper &  8.5in & 11in \\\hline
             ansibpaper &  11in & 17in \\\hline
             ansicpaper &  17in & 22in \\\hline
             ansidpaper &  22in & 34in \\\hline
@@ -309,9 +307,9 @@ headershade=plain]%
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{multicols}{2}
 \begin{itemize}
-    \item \texttt{grid={true,false}}: 
+    \item \texttt{grid={true,false}}:
          نمایش یک شبکه در پس‌زمینهٔ پوستر. این گزینه در فاز طرح‌بندی پوستر خیلی کاربردی و مفید است با مقدار پیش‌فرض \Verb|no|.
-    \item \texttt{columns=4}:  تعداد ستون‌ها. 
+    \item \texttt{columns=4}:  تعداد ستون‌ها.
      (در حالت افقی ۴ و در حالت عمودی مقدار پیش‌فرض ۳ است و حداکثر تعداد ستون‌ها ۶ است.)
     \item \texttt{colspacing=length}: فاصله بین‌ستون‌های پوستر.
     \item \texttt{headerheight=length}: ارتفاع بخش سرآمد پوستر. مقدار پیش‌فرض آن {\verb|0.1\textheight|} است.
@@ -328,16 +326,16 @@ headershade=plain]%
         \item \lr{\Verb|shadeLR|}:
         پس‌زمینه با رنگ مدرج افقی (از \lr{\Verb|bgColorOne|} به \lr{\Verb|bgColorTwo|}).
         \item \lr{\Verb|shadeTB|}:
-        پس‌زمینه با رنگ مدرج عمودی (از \lr{\Verb|bgColorOne|} به \lr{\Verb|bgColorTwo|}).        
-        \item \lr{\Verb|user|}: 
-        با دستور 
+        پس‌زمینه با رنگ مدرج عمودی (از \lr{\Verb|bgColorOne|} به \lr{\Verb|bgColorTwo|}).
+        \item \lr{\Verb|user|}:
+        با دستور
         \lr{\Verb|\textbackslash{}background\{...\}|} پس‌زمینهٔ شخصی خودتان را می‌توانید طراحی نمایید.
-        \item \lr{\Verb|none|}: 
+        \item \lr{\Verb|none|}:
         بدون هیچ پس‌زمینه‌ای.
     \end{enumerate}
     \item \lr{\texttt{bgColorOne=pgf color name}}: رنگ اول پس‌زمینه. در حالت \texttt{plain} تنها همین رنگ بکار می‌رود.
     \item \lr{\texttt{bgColorTwo=pgf color name}}: رنگ دوم پس‌زمینه.
-    \item \lr{\texttt{eyecatcher={true,false}}}: تعیین می‌کند که آیا آی‌کچر در سرآمد پوستر به نمایش درآید یا نه. 
+    \item \lr{\texttt{eyecatcher={true,false}}}: تعیین می‌کند که آیا آی‌کچر در سرآمد پوستر به نمایش درآید یا نه.
     این تصویر در سمت راست عنوان قرار خواهد گرفت.
 \end{itemize}
 %\end{multicols}
@@ -364,15 +362,15 @@ textborder=none
 \vspace{-4mm}
 \begin{itemize}
     \item \lr{\texttt{name=box name}}: نام جعبه را مشخص می‌کند. این نام در تعیین موقعیت دیگر جعبه‌ها نسبت به آن بکار آید.
-    \item \lr{\texttt{column=column number}}: مشخص می‌کند که جعبه در کدام ستون قرار گیرد 
+    \item \lr{\texttt{column=column number}}: مشخص می‌کند که جعبه در کدام ستون قرار گیرد
     --شماره ستون‌ها از صفر شروع می‌شود--.
     \item \lr{\Verb|row=row position|}:
-     مشخص می‌کند که جعبه در کدام ردیف از مختصات صفحه قرار گیرد؛ این مختصات عددی در بازهٔ صفر تا یک است که شماره گذاری 
-     آن از زیر عنوان پوستر آغاز شده و در پایان صفحه یک خواهد شد.% این گزینه برای آدرس دهی دقیق یک جعبه در صفحه بکار می‌رود.    
-    \item \lr{\texttt{span=column span}}:    
-    مشخص می‌کند که جعبه شامل چند ستون از پوستر خواهد بود --مقدار پیش‌فرض عدد یک است--. 
+     مشخص می‌کند که جعبه در کدام ردیف از مختصات صفحه قرار گیرد؛ این مختصات عددی در بازهٔ صفر تا یک است که شماره گذاری
+     آن از زیر عنوان پوستر آغاز شده و در پایان صفحه یک خواهد شد.% این گزینه برای آدرس دهی دقیق یک جعبه در صفحه بکار می‌رود.
+    \item \lr{\texttt{span=column span}}:
+    مشخص می‌کند که جعبه شامل چند ستون از پوستر خواهد بود --مقدار پیش‌فرض عدد یک است--.
     \item \lr{\texttt{borderColor=pgf color name}}:
-    رنگ مورد استفاده در حاشیه جعبه‌ها. 
+    رنگ مورد استفاده در حاشیه جعبه‌ها.
     \item \lr{\texttt{headerColorOne=pgf color}}:
     رنگ اول عنوان جعبه.
     \item \lr{\texttt{headerColorTwo=pgf color name}}:
@@ -380,7 +378,7 @@ textborder=none
     \item \lr{\texttt{textborder=border type}}:
     نوع حاشیه پایین جعبه را تعیین می‌کند که خود شامل انواع زیر است:
 %        \begin{enumerate*}[label=\arabic*)]
-%            \item\Verb|none| 
+%            \item\Verb|none|
 %            \item\Verb|bars|
 %            \item\Verb|faded|
 %            \item\Verb|rectangle|
@@ -390,56 +388,56 @@ textborder=none
 %            \item\Verb|roundedright|
 %            \item\Verb|triangles|
 %            \item\Verb|coils|
-%        \end{enumerate*}    
-    
+%        \end{enumerate*}
+
     \centerline{\includegraphics[width=.8\textwidth, ]{docs-boxshape}}
     \item \lr{\texttt{headerborder=header border type}}:
     آن بخشی از جعبه که پیرامون عنوان قرار می گیرد را تعیین می‌کند:
-    
+
     \centerline{\includegraphics[width=.8\textwidth, ]{docs-headerborder}}
     \item \lr{\texttt{headershape=header border shape}}:
     نوع آرایش عنوان جعبه را مشخص می‌کند:
-    
+
     \centerline{\includegraphics[width=.8\textwidth, ]{docs-headershape}}
     \item \lr{\texttt{headershade=type of header shading}}:
-    
+
 %        \begin{enumerate*}[label=\arabic*)]
-%            \item\texttt{plain} 
-%            \item\texttt{shadelr} 
-%            \item\texttt{shaderl} 
+%            \item\texttt{plain}
+%            \item\texttt{shadelr}
+%            \item\texttt{shaderl}
 %            \item\texttt{shadetb}
 %            \item\texttt{shadetbinverse}
 %        \end{enumerate*}
-        
-    \centerline{\includegraphics[width=.82\textwidth, 
+
+    \centerline{\includegraphics[width=.82\textwidth,
     trim={.4cm 5.1cm .4cm .6cm}, clip=true]{docs-shade.pdf}}
-            
+
     \item \lr{\texttt{boxshade}}:
-    
+
 %        \begin{enumerate*}[label=\arabic*)]
-%            \item\texttt{plain} 
-%            \item\texttt{shadelr} 
+%            \item\texttt{plain}
+%            \item\texttt{shadelr}
 %            \item\texttt{shaderl}
-%            \item\texttt{shadetb}            
+%            \item\texttt{shadetb}
 %            \item\texttt{none}
 %        \end{enumerate*}
-        
-    \centerline{\includegraphics[width=.82\textwidth, 
+
+    \centerline{\includegraphics[width=.82\textwidth,
     trim={.4cm .1cm .4cm 5.5cm}, clip=true]{docs-shade.pdf}}
-            
+
     \item \lr{\texttt{headerfont=font definition}}:
     دستوری که قبل از حروفچینی عنوان جعبه قرار داده می‌شود.
     \item \lr{\texttt{headerFontColor=pgf color name}}:
     رنگ قلم عنوان جعبه.
     \item \lr{\texttt{linewidth=length}}:
     عرض خطوط مورد استفاده در ترسیم پوستر
-    \item \lr{\Verb|above=box name|}: 
+    \item \lr{\Verb|above=box name|}:
     نام جعبه‌ای را مشخص می‌کند که این جعبه باید در بالای جعبه مذکور ترازبندی شود.
-    \item \lr{\Verb|below=box name|}: 
+    \item \lr{\Verb|below=box name|}:
     نام جعبه‌ای را مشخص می‌کند که این جعبه باید در پایین جعبه مذکور ترازبندی شود.
-    \item \lr{\Verb|aligned=box name|}: 
-    نام جعبه‌ای را مشخص می‌کند که این جعبه باید به محاذات آن جعبه ترازبندی شود.        
-    \item \lr{\Verb|bottomaligned=box name|}: 
+    \item \lr{\Verb|aligned=box name|}:
+    نام جعبه‌ای را مشخص می‌کند که این جعبه باید به محاذات آن جعبه ترازبندی شود.
+    \item \lr{\Verb|bottomaligned=box name|}:
     نام جعبه‌ای را مشخص می‌کند که این جعبه باید نسبت به آن جعبه از پایین ترازبندی شود.
 \end{itemize}
 \end{posterbox}
@@ -447,25 +445,25 @@ textborder=none
 \begin{posterbox}[name=absolute,column=0,span=2,below=setting,
 ,textborder=rectangle,headershape=rectangle,]{چینش جعبه‌ها}
 %\small
-    نکته‌ای که باید در چینش جعبه‌ها در نظر داشته باشید این است که مکان جعبه‌ها می‌توانند به صورت نسبی یا دقیق تعیین شود. 
-    اگر برای مثال جعبه ب قرار است دقیقاً بین جعبه‌های الف و ج قرار گیرد 
-    آنگاه این دو جعبه اخیر حتماً باید پیش از جعبه ب تعریف شوند، در غیر اینصورت سبب تولید خطا می‌گردد. ضمناً می‌توانید بدون 
+    نکته‌ای که باید در چینش جعبه‌ها در نظر داشته باشید این است که مکان جعبه‌ها می‌توانند به صورت نسبی یا دقیق تعیین شود.
+    اگر برای مثال جعبه ب قرار است دقیقاً بین جعبه‌های الف و ج قرار گیرد
+    آنگاه این دو جعبه اخیر حتماً باید پیش از جعبه ب تعریف شوند، در غیر اینصورت سبب تولید خطا می‌گردد. ضمناً می‌توانید بدون
     تعیین این پارامترها چینش جعبه‌ها را به صورت خودکار و بهمان ترتیب تعریف به خود بسته واگذار نمایید.
-    
-    برای آدرس‌دهی دقیق یک جعبه، جایگاه دقیق آن‌ را با کمک \Verb|row| و \Verb|column| 
-    در تنظیمات جعبه‌پوستر مشخص نمایید. 
+
+    برای آدرس‌دهی دقیق یک جعبه، جایگاه دقیق آن‌ را با کمک \Verb|row| و \Verb|column|
+    در تنظیمات جعبه‌پوستر مشخص نمایید.
 \end{posterbox}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{posterbox}[name=ack,column=3,span=2,below=posterboxoption, bottomaligned=absolute, 
+\begin{posterbox}[name=ack,column=3,span=2,below=posterboxoption, bottomaligned=absolute,
 ,textborder=triangles]{قدردانی}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 با تشکر از دکتر \lr{Brian} خالق کلاس پوستر و تشکر ویژه از جناب آقای دکتر وفا خلیقی بخاطر زحماتی که برای فارسی‌نویسی در
-محیط زی‌لاتک انجام‌ داده‌اند %\footnote{بدون پشتیبانی زی‌پرشین از محیط \lr{tikzpicture} فارسی سازی این کلاس ممکن نبود.} 
+محیط زی‌لاتک انجام‌ داده‌اند %\footnote{بدون پشتیبانی زی‌پرشین از محیط \lr{tikzpicture} فارسی سازی این کلاس ممکن نبود.}
  و دکتر محمود امین‌طوسی به سبب پیشنهاد نام زیباپوستر و گروه پارسی‌لاتک برای تست این کلاس.
 
 \footnotetext{
 زیباپوستر از نسخهٔ $2.2$ به بعد بر خلاف نسخه اولیّه هر دو نوع پوستر پارسی و لاتین را پشتیبانی می‌کند. }
-\end{posterbox} 
+\end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{poster}
 \end{document}

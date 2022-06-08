@@ -1,0 +1,106 @@
+%% 8. June 2022: ver 2.53
+%%     - nullfont warning because of some updates in PGF/TikZ
+%%     - a0paper as the default paper size
+%% 21. September 2016: ver 2.52 %doesn't work properly.
+%%     - set paper page default size to a0paper
+%% 12. September 2016: ver 2.51
+%%     - typo in package inf.
+%% 1. September 2016: ver 2.5
+%%     - In persian mode with gird enabled option, grid numbers set on left side of the sheet.
+%%     -There is no need to set \setLTR before \shade or \fill command, it fixed in new version of bidi.
+%% 11. February 2015: ver 2.42
+%%     - Correcting some other typos in the package's documentaion.
+%% 10. February 2015: ver 2.41
+%%     - Correcting two typos in the package's documentaion.
+%% 9. February 2015: ver 2.4
+%%     - bidi ver 18.2 and later has not provice bidi@tikzpicture environment anymore, istead Vafa Khalighi the creator and maintainer of xepersian have improved the tikzpicture environment in RTL mode, so the package just use tikzpicture in both ltr and rtl poster.
+%% 30. September 2015: ver 2.3
+%%     -
+%% 1. September 2015: ver 2.21
+%%     - if xebaposter's user didn't set persian/latin option, by default it will be set latin but in case xepersian package is being loaded the default will be persian unless the user set latin explicitly.
+%% 1. September 2015: ver 2.2
+%%     - persian/latin options added to the class and default is latin. From now on, this class can be used for both latin and persian poster.  The only thing that should be mentioned is the persian one must be compiled with xelatex but the latin one should be compiled with pdflatex or xelatex. For latin poster pdflatex is preferred because shading feature of tikz doesn't work properly with xelatex from TeXLive2013! the bug reported in http://tex.stackexchange.com/questions/262877.
+%% 28. August 2015:
+%%     - A bidi@tikzpicture is used instead of tikzpicture because it causes some unwanted extra spaces in the poster.
+%% 21. August 2015:
+%%     - The xebaposter is named after changing the baposter style to adapt with right to left text like persian.
+%% 29. September 2011:
+%%     - Finally fixed confusion with paper size handling and landscape. This required seperate handling of papersizes
+%%       known to the geometry package and other packages.
+%% 26. September 2011:
+%%     - Reverted drawing of faded borders to manual method, as the current result does not work with evince,
+%%       and produced spurious colored boxes with okular and acroread.
+%%     - Added one more example due to popular request
+%% 16. September 2011:
+%%     - Removed nag package, such that it compiles on older systems
+%%     - Added more examples
+%% 15. September 2011:
+%%     - Merged fork by (rk) back into mainline, essentially taking over all the great improvements that Reinhold Kainhofer coded.
+%%       We call this version 2, as it breaks the interface in some small points. Essentially watch out for this:
+%%       - no/yes keys are now false/true
+%%       - the shade-lr etc. keys have the hypen removed, and are now called shadelr etc.
+%      - Added more examples, which are all adapted to work with the current version
+%% 27. August 2011 (rk):
+%%     - Completely factored out all drawing commands to handler functions, assigned via choice keys
+%%     - Added cornerradius, boxheaderheight, boxpadding options
+%%     - Added missing roundedright
+%% 26. August 2011 (rk):
+%%     - Turned headerbox cmd into posterbox environment (allows verbatim)
+%%     - pass several options to packages
+%%     - added debug cls option to reduce default output
+%%     - rewrote several loops and ifthenelse
+%%     - Use boolean and choice keys for all options
+%%     - Changed all choice options to set a global function to
+%%       \baposter@OPTION@OPTIONVALUE, which are a functions that execute the
+%%       option's setting (drawing routine, color setting for tikz, etc.)
+%%     - Add a5paper
+%% 07. April 2011: Fixed paper size handling
+%%     - Fixed Paper Size handling, you can now specify all page sizes using paperwidth=, paperheight= class options.
+%%     - Added rudimentary documentation of the available keys.
+%% 11. December 2010: Fixed "Empty Second Page" bug
+%%     - A second empty page was introduced when a document ended with
+%%           \end{poster}
+%%         \end{document}
+%%       This was fixed thanks to a suggestion by Martin Aulbach
+%%     - Added
+%%         \thispagestyle{empty}%%       to suppress page numbers, which became visible when the margins are large.
+%%       The underlying problem of page-size handling has not yet been solved.
+%% 30. September 2010: Border Bugfixes
+%%     - Correct background color with textborder=rounded-small, Thanks to Ke Chen for the bugreport and patch
+%%     - Correctly draw rectangular text boxes, Thanks to abenkst for the bugreport and fix
+%% 10. June 2010: Added option to set the number of columns
+%%     - added a class option to set the number of columns
+%%         - columns=5: sets the number of columns to 5, possible values are 1..6, default is 3 in portrait and 4 in landscape format
+%% 29. April 2009: Incorporated Patches by Arne Henningsen
+%%     - added some class options
+%%        - a4shrink: shrink the paper to A4 size (for printing drafts or handouts)
+%%        - movebody=Xpt: move the text/poster body Xpt to the right
+%%                    (or to the left if Xpt is negative),
+%%                    e.g. for manually centering the poster on the page
+%%        - showframe: use the "showframe" option of the "geometry" package
+%%        - a0paper (default): set paper size to A0
+%%        - archE: set paper size to Arch E
+%%     - setting "background" can be "none" now (otherwise the "showframe"
+%%          option has no effect)
+%%     - the page number has been removed (it was mostly not visible before)
+%%     - the "margin=" option works now
+%% 04. December 2008
+%%     - Mainly an update to the landscape example
+%% 14. November 2008
+%%     - Actually center the title when eyecatcher is used.
+%% 04. November 2008
+%%     - Fixed bug with eyecatcher not working.
+%% 26. June 2008
+%%     - Fixed bug with plain background mode.
+%% 14. June 2008
+%%     - Support for portrait/landscape switching.
+%%     - Some smaller bugfixes.
+%% 01. June 2007
+%%     - First version released.
+%%
+%% Use this class with xelatex
+%%
+%% I have confirmed that this package works with
+%%   - texlive 2015
+%%
+%%

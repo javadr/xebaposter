@@ -1,7 +1,7 @@
 %%
 %% This is file `xebaposter.cls'
-%% 
-%% Copyright © 2015-2016 by Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
+%%
+%% Copyright © 2015-2022 by Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
 %% of this license or (at your option) any later version.
@@ -11,11 +11,11 @@
 %% version 2005/12/01 or later.
 %%
 %% This work has the LPPL maintenance status `maintained'.
-%% 
+%%
 %% This work is “author-maintained” (as per LPPL maintenance status)
 %% by Seiied-Mohammad-Javad Razavian.
 %% The Current Maintainer of this work is Seiied-Mohammad-Javad Razavian
-%% 
+%%
 %% A relatively comfortable latex class to produce posters with a grid based
 %% layout. It comes with a number of combinable styles and is (maybe only for
 %% the writer) easy to extend, as all the graphics is based on pgf.
@@ -23,120 +23,9 @@
 %%
 %% Copyright (C) 2007-2011 Brian Amberg
 %% Copyright (C) 2011      Reinhold Kainhofer <reinhold@kainhofer.com>
-%% Copyright (C) 2015-2016      Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
+%% Copyright (C) 2015-2022      Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
 %%
-%% 12. September 2016: ver 2.51
-%%     - typo in package inf.
-%% 1. September 2016: ver 2.5
-%%     - In persian mode with gird enabled option, grid numbers set on left side of the sheet.
-%%     -There is no need to set \setLTR before \shade or \fill command, it fixed in new version of bidi.
-%% 11. February 2015: ver 2.42
-%%     - Correcting some other typos in the package's documentaion.
-%% 10. February 2015: ver 2.41
-%%     - Correcting two typos in the package's documentaion.
-%% 9. February 2015: ver 2.4
-%%     - bidi ver 18.2 and later has not provice bidi@tikzpicture environment anymore, istead Vafa Khalighi the creator and maintainer of xepersian have improved the tikzpicture environment in RTL mode, so the package just use tikzpicture in both ltr and rtl poster. 
-%% 30. September 2015: ver 2.3
-%%     - 
-%% 1. September 2015: ver 2.21
-%%     - if xebaposter's user didn't set persian/latin option, by default it will be set latin but in case xepersian package is being loaded the default will be persian unless the user set latin explicitly. 
-%% 1. September 2015: ver 2.2
-%%     - persian/latin options added to the class and default is latin. From now on, this class can be used for both latin and persian poster.  The only thing that should be mentioned is the persian one must be compiled with xelatex but the latin one should be compiled with pdflatex or xelatex. For latin poster pdflatex is preferred because shading feature of tikz doesn't work properly with xelatex from TeXLive2013! the bug reported in http://tex.stackexchange.com/questions/262877.
-%% 28. August 2015:
-%%     - A bidi@tikzpicture is used instead of tikzpicture because it causes some unwanted extra spaces in the poster.
-%% 21. August 2015: 
-%%     - The xebaposter is named after changing the baposter style to adapt with right to left text like persian.
-%% 29. September 2011: 
-%%     - Finally fixed confusion with paper size handling and landscape. This required seperate handling of papersizes 
-%%       known to the geometry package and other packages.
-%% 26. September 2011:
-%%     - Reverted drawing of faded borders to manual method, as the current result does not work with evince, 
-%%       and produced spurious colored boxes with okular and acroread.
-%%     - Added one more example due to popular request
-%% 16. September 2011:
-%%     - Removed nag package, such that it compiles on older systems
-%%     - Added more examples
-%% 15. September 2011:
-%%     - Merged fork by (rk) back into mainline, essentially taking over all the great improvements that Reinhold Kainhofer coded.
-%%       We call this version 2, as it breaks the interface in some small points. Essentially watch out for this:
-%%       - no/yes keys are now false/true
-%%       - the shade-lr etc. keys have the hypen removed, and are now called shadelr etc.
-%      - Added more examples, which are all adapted to work with the current version
-%% 27. August 2011 (rk):
-%%     - Completely factored out all drawing commands to handler functions, assigned via choice keys
-%%     - Added cornerradius, boxheaderheight, boxpadding options
-%%     - Added missing roundedright
-%% 26. August 2011 (rk):
-%%     - Turned headerbox cmd into posterbox environment (allows verbatim)
-%%     - pass several options to packages
-%%     - added debug cls option to reduce default output
-%%     - rewrote several loops and ifthenelse
-%%     - Use boolean and choice keys for all options
-%%     - Changed all choice options to set a global function to
-%%       \baposter@OPTION@OPTIONVALUE, which are a functions that execute the
-%%       option's setting (drawing routine, color setting for tikz, etc.)
-%%     - Add a5paper
-%% 07. April 2011: Fixed paper size handling
-%%     - Fixed Paper Size handling, you can now specify all page sizes using paperwidth=, paperheight= class options.
-%%     - Added rudimentary documentation of the available keys.
-%% 11. December 2010: Fixed "Empty Second Page" bug
-%%     - A second empty page was introduced when a document ended with
-%%           \end{poster}
-%%         \end{document}
-%%       This was fixed thanks to a suggestion by Martin Aulbach
-%%     - Added
-%%         \thispagestyle{empty}%%       to suppress page numbers, which became visible when the margins are large.
-%%       The underlying problem of page-size handling has not yet been solved.
-%% 30. September 2010: Border Bugfixes
-%%     - Correct background color with textborder=rounded-small, Thanks to Ke Chen for the bugreport and patch
-%%     - Correctly draw rectangular text boxes, Thanks to abenkst for the bugreport and fix
-%% 10. June 2010: Added option to set the number of columns
-%%     - added a class option to set the number of columns
-%%         - columns=5: sets the number of columns to 5, possible values are 1..6, default is 3 in portrait and 4 in landscape format
-%% 29. April 2009: Incorporated Patches by Arne Henningsen
-%%     - added some class options
-%%        - a4shrink: shrink the paper to A4 size (for printing drafts or handouts)
-%%        - movebody=Xpt: move the text/poster body Xpt to the right
-%%                    (or to the left if Xpt is negative),
-%%                    e.g. for manually centering the poster on the page
-%%        - showframe: use the "showframe" option of the "geometry" package
-%%        - a0paper (default): set paper size to A0
-%%        - archE: set paper size to Arch E
-%%     - setting "background" can be "none" now (otherwise the "showframe"
-%%          option has no effect)
-%%     - the page number has been removed (it was mostly not visible before)
-%%     - the "margin=" option works now
-%% 04. December 2008
-%%     - Mainly an update to the landscape example
-%% 14. November 2008
-%%     - Actually center the title when eyecatcher is used.
-%% 04. November 2008
-%%     - Fixed bug with eyecatcher not working.
-%% 26. June 2008
-%%     - Fixed bug with plain background mode.
-%% 14. June 2008
-%%     - Support for portrait/landscape switching.
-%%     - Some smaller bugfixes.
-%% 01. June 2007
-%%     - First version released.
-%%
-%% Use this class with xelatex
-%%
-%% I have confirmed that this package works with
-%%   - texlive 2015 
-%%
-%%
-%% TODO:
-%% -) Rename backgrounds back to shaded-tb shade-lr
-%% -) Rename textborder back to rounded-small (consistent naming needed!)
-%% -) Rename headershade back to shade-lr, shade-tb, shade-tb-inverse
-%% -) Rename headershape back to small-rounded
-%% -) Option value consistency (small-rounded vs. rounded-small; missing ones)
-%% -) Rename \xebaposterHeaderSetShade, \xebaposterHeaderDrawText to include @ and verb
-%%
-%%
-%% Licence: GPL
-\ProvidesClass{xebaposter}[2016/09/12 v2.51 xebaposter class]
+\ProvidesClass{xebaposter}[2022/06/08 v2.53 xebaposter class]
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \LoadClass{article}
 \typeout{baposter: Brian Amberg, 2007, 2008, 2009, 2010, 2011 | http://www.brian-amberg.de/uni/poster/}
@@ -183,7 +72,7 @@
 %\ifxetex
 %    \def\pdftexversion{140}%
 %    \def\pgfsysdriver{pgfsys-dvipdfm.def}%
-%\fi  
+%\fi
 \RequirePackage{tikz}%
 \RequirePackage{pgf}%
 %\makeatletter
@@ -220,24 +109,25 @@
 \DeclareOptionX{portrait}{}%
 %
 \newcommand{\xebaposter@setfinalpapersize}[2]{%
-\if@geometryKnowsThisSize
+\if@geometryKnowsThisSize%
   \setlength{\xebaposter@finalpaperwidth}{#1}%
   \setlength{\xebaposter@finalpaperheight}{#2}%
-\else
-\if@landscape
+\else%
+\if@landscape%
 % Transpose length, if geometry does not handle the papersize based on the key
   \setlength{\xebaposter@finalpaperwidth}{#2}%
   \setlength{\xebaposter@finalpaperheight}{#1}%
-\else
+\else%
   \setlength{\xebaposter@finalpaperwidth}{#1}%
   \setlength{\xebaposter@finalpaperheight}{#2}%
-\fi
-\fi
-}
+\fi%
+\fi%
+}%
 %
 % Default paperwidth and paperheight = a0paper
 \DeclareOptionX{paperwidth}[841mm]{\setlength{\xebaposter@finalpaperwidth}{#1}}%
 \DeclareOptionX{paperheight}[1189mm]{\setlength{\xebaposter@finalpaperheight}{#1}}%
+\xebaposter@setfinalpapersize{841mm}{1189mm}
 \DeclareOptionX{archA}         {                           \xebaposter@setfinalpapersize{9in}{12in}}%
 \DeclareOptionX{archB}         {                           \xebaposter@setfinalpapersize{12in}{18in}}%
 \DeclareOptionX{archC}         {                           \xebaposter@setfinalpapersize{18in}{24in}}%
@@ -287,31 +177,36 @@
 \DeclareOptionX{table}{}%
 \DeclareOptionX{showframe}{}%
 %
-\newif\if@xebaposter@persian
-\newif\if@xebaposter@latin
-\DeclareOptionX{persian}{\@xebaposter@persiantrue}
-\DeclareOptionX{latin}{\@xebaposter@latintrue}
+\newif\if@xebaposter@persian%
+\newif\if@xebaposter@latin%
+\DeclareOptionX{persian}{\@xebaposter@persiantrue}%
+\DeclareOptionX{latin}{\@xebaposter@latintrue}%
+%
+%\ExecuteOptionsX{
+%    portrait,
+%    a0paper,
+%}
 %
 \ProcessOptionsX%
 %
-\if@debug
+\if@debug%
 \newcommand{\debug}[1]{\typeout{#1}}%
-\else
+\else%
 \newcommand{\debug}[1]{}%
-\fi
+\fi%
 %
-%%% when user didn't set persian/latin option, if he/she uses xepersian the default will be persian, otherwise default will be latin. 
-\if@xebaposter@latin
-    \relax
-\else
-    \if@xebaposter@persian
-        \relax
-    \else
-        \AtBeginDocument{\@ifpackageloaded{xepersian}{\@xebaposter@persiantrue}{}}
-    \fi
-\fi
+%%% when user didn't set persian/latin option, if he/she uses xepersian the default will be persian, otherwise default will be latin.
+\if@xebaposter@latin%
+    \relax%
+\else%
+    \if@xebaposter@persian%
+        \relax%
+    \else%
+        \AtBeginDocument{\@ifpackageloaded{xepersian}{\@xebaposter@persiantrue}{}}%
+    \fi%
+\fi%
 %
-\setlength{\xebaposter@basepaperwidth} {\xebaposter@fontscale\xebaposter@finalpaperwidth }%
+\setlength{\xebaposter@basepaperwidth} {\xebaposter@fontscale\xebaposter@finalpaperwidth}%
 \setlength{\xebaposter@basepaperheight}{\xebaposter@fontscale\xebaposter@finalpaperheight}%
 \setlength{\xebaposter@basemargin}     {\xebaposter@fontscale\xebaposter@finalmargin}%
 \newlength{\xebaposter@basemarginright}%
@@ -325,7 +220,7 @@
 \typeout{Paperheight=\the\xebaposter@finalpaperheight}%
 \typeout{BasePaperwidth=\the\xebaposter@basepaperwidth}%
 \typeout{BasePaperheight=\the\xebaposter@basepaperheight}%
-\RequirePackage[
+\RequirePackage[%
    paperwidth=\xebaposter@basepaperwidth,%
    paperheight=\xebaposter@basepaperheight,%
    tmargin=\xebaposter@basemargin,%
@@ -334,16 +229,16 @@
    rmargin=\xebaposter@basemarginright,%
    ]{geometry}%
 %
-\RequirePackage{pgfpages}
-\if@landscape
-\if@geometryKnowsThisSize
+\RequirePackage{pgfpages}%
+\if@landscape%
+\if@geometryKnowsThisSize%
 \pgfpagesuselayout{resize to}[physical paper width=\xebaposter@finalpaperheight,physical paper height=\xebaposter@finalpaperwidth]%
-\else
+\else%
 \pgfpagesuselayout{resize to}[physical paper width=\xebaposter@finalpaperwidth,physical paper height=\xebaposter@finalpaperheight]%
-\fi
-\else
+\fi%
+\else%
 \pgfpagesuselayout{resize to}[physical paper width=\xebaposter@finalpaperwidth,physical paper height=\xebaposter@finalpaperheight]%
-\fi
+\fi%
 %
 %
 %
@@ -355,19 +250,19 @@
 %% particular, they will be set to \xebaposter@optionname@optionvalue, which
 %% should do the actual work / setting for that particular optionvalue.
 %
-\newcommand{\xebaposterPosterDrawBackground}[2]{} % Draw poster background
+\newcommand{\xebaposterPosterDrawBackground}[2]{}% % Draw poster background
 %
-\newcommand{\xebaposterBoxGetShape}{}             % Returns path of text box shape
-\newcommand{\xebaposterBoxDrawBackground}[2]{}    % Draw bg of boxes
-\newcommand{\xebaposterBoxDrawBorder}[1]{}        % Draw border of individual boxes
+\newcommand{\xebaposterBoxGetShape}{}%             % Returns path of text box shape
+\newcommand{\xebaposterBoxDrawBackground}[2]{}%    % Draw bg of boxes
+\newcommand{\xebaposterBoxDrawBorder}[1]{}%        % Draw border of individual boxes
 %
-\newcommand{\xebaposterHeaderGetShape}{}          % Returns path of text box shape
-\newcommand{\xebaposterHeaderSetShade}[3]{}       % Set bg style for box headers
-\newcommand{\xebaposterHeaderDrawBackground}[3]{} % Draw background of box header
-\newcommand{\xebaposterHeaderDrawBorder}[1]{}     % Draw border of box header
-\newcommand{\xebaposterHeaderDrawText}[1]{}       % Draw text inside box header
+\newcommand{\xebaposterHeaderGetShape}{}%          % Returns path of text box shape
+\newcommand{\xebaposterHeaderSetShade}[3]{}%       % Set bg style for box headers
+\newcommand{\xebaposterHeaderDrawBackground}[3]{}% % Draw background of box header
+\newcommand{\xebaposterHeaderDrawBorder}[1]{}%     % Draw border of box header
+\newcommand{\xebaposterHeaderDrawText}[1]{}%       % Draw text inside box header
 %
-\newcommand{\@@previousbox}{notset}             % stores the previously processed box for below=auto
+\newcommand{\@@previousbox}{notset}%             % stores the previously processed box for below=auto
 %
 % Function to set a user-defined background
 \newcommand{\xebaposter@backgroundCmd}{\error{No background command defined. Use \background{...} to define background}}%
@@ -407,7 +302,7 @@
   \PackageWarning{xebaposter}{Unknown background `\xebaposter@background' (use
       shadeLR, shadeTB, plain, none, or user). If user is used, you also
       have to define \background{...}.}%
-  \renewcommand{\xebaposterPosterDrawBackground}[2]{\xebaposter@background@none{##1}{##2}}
+  \renewcommand{\xebaposterPosterDrawBackground}[2]{\xebaposter@background@none{##1}{##2}}%
 }%
 %
 %
@@ -747,7 +642,7 @@
   \path (\xebaposter@box@name ne) +(0em,-0.5\xebaposter@box@@boxheaderheight) node[anchor=east,inner sep=0.4em] {#1};%
 \else
   \path (\xebaposter@box@name nw) +(0em,-0.5\xebaposter@box@@boxheaderheight) node[anchor=west,inner sep=0.4em] {#1};%
-\fi  
+\fi
 }%
 \newcommand{\xebaposter@box@headerdrawtext@smallrounded}[1]{%
   \path (\xebaposter@box@name nw) +(0.5\boxwidth,-0.5\xebaposter@box@@boxheaderheight) node[anchor=center] {#1};%
@@ -759,16 +654,16 @@
 \else
   \path (\xebaposter@box@name nw) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
         node[anchor=west,inner sep=0.4em,text depth=0.4em] {#1};%
-\fi 
+\fi
 }%
 \newcommand{\xebaposter@box@headerdrawtext@roundedleft}[1]{%
 \if@xebaposter@persian
   \path (\xebaposter@box@name ne) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
-        node[anchor=east,inner sep=0.4em] {#1};
-\else 
+        node[anchor=east,inner sep=0.4em] {#1};%
+\else
   \path (\xebaposter@box@name nw) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
-        node[anchor=west,inner sep=0.4em] {#1};
-\fi 
+        node[anchor=west,inner sep=0.4em] {#1};%
+\fi
 }%
 \newcommand{\xebaposter@box@headerdrawtext@rounded}[1]{%
     \path (\xebaposter@box@name nw) +(0.5\boxwidth,-0.5\xebaposter@box@@boxheaderheight) node[anchor=center] {#1};%
@@ -935,9 +830,9 @@
 %
 \if@xebaposter@persian
     \def\xebaposter@box@title{\rl{##2}}%
-\else    
+\else
     \def\xebaposter@box@title{{##2}}%
-\fi    
+\fi
 %
     \colorlet{borderColor}{\xebaposter@box@borderColor}%
     \colorlet{headerColorOne}{\xebaposter@box@headerColorOne}%
@@ -953,8 +848,8 @@
 %
     %% The columns is always given absolute
 \if@xebaposter@persian
-    % boxstartx = (columns-column-span) * colwidth + (columns-column-span) * colspacing    
-%    \setlength{\boxstartx}{(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\colwidth+(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\xebaposter@@colspacing}%   
+    % boxstartx = (columns-column-span) * colwidth + (columns-column-span) * colspacing
+%    \setlength{\boxstartx}{(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\colwidth+(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\xebaposter@@colspacing}%
    \setlength{\boxstartx}{\xebaposter@columns\colwidth}%
     \addtolength{\boxstartx}{-\xebaposter@box@column\colwidth}%
     \addtolength{\boxstartx}{-\xebaposter@box@span\colwidth}%
@@ -964,18 +859,18 @@
 \else
     % boxstartx = column * colwidth + column * colspacing
     \setlength{\boxstartx}{(\colwidth+\xebaposter@@colspacing)*\xebaposter@box@column}%
-\fi 
+\fi
 %
     %% The width is gvien absolute
     % Box Width = span * colwidth + (span-1) * colspacing
-    \setlength{\boxwidth}{\xebaposter@box@span\colwidth} %
+    \setlength{\boxwidth}{\xebaposter@box@span\colwidth}%
     \addtolength{\boxwidth}{\xebaposter@@colspacing*(\xebaposter@box@span-1)}%
 %
     %% Measure the content of the box%
     \setbox\xebaposter@box@content=\hbox\bgroup%
       \begin{pgfinterruptpicture}%
-        \begin{minipage}[t]{\boxwidth-\xebaposter@box@@boxpadding*2}
-\if@xebaposter@persian
+        \begin{minipage}[t]{\boxwidth-\xebaposter@box@@boxpadding*2}%
+\if@xebaposter@persian%
         \persian%
 \fi
           \xebaposter@box@textfont\bgroup%
@@ -988,8 +883,8 @@
     \egroup%
     \setlength{\boxheight}{\ht\xebaposter@box@content}%
     \addtolength{\boxheight}{\dp\xebaposter@box@content}%
-    \addtolength{\boxheight}{\xebaposter@box@@boxheaderheight} % Header%
-    \addtolength{\boxheight}{2\xebaposter@box@@boxpadding} % Inner Sep
+    \addtolength{\boxheight}{\xebaposter@box@@boxheaderheight}% Header%
+    \addtolength{\boxheight}{2\xebaposter@box@@boxpadding}% Inner Sep
 %
     \ifthenelse{\equal{\xebaposter@box@height}{bottom}}{%
     }{\ifthenelse{\equal{\xebaposter@box@height}{auto}}{%
@@ -1012,12 +907,12 @@
     }{}%
     \xdef\@@previousbox{\xebaposter@box@name}%
 %
-    \ifthenelse{\not\equal{\xebaposter@box@below}{notset} }{%
+    \ifthenelse{\not\equal{\xebaposter@box@below}{notset}}{%
       %% Below%
       \debug{Below}%
       \path[shape=coordinate] (\boxstartx,0pt |- \xebaposter@box@below se) ++(0pt,-\xebaposter@@colspacing) coordinate(\xebaposter@box@name nw);%
     }{%
-      \ifthenelse{\not\equal{\xebaposter@box@aligned}{notset} }{%
+      \ifthenelse{\not\equal{\xebaposter@box@aligned}{notset}}{%
         %% Aligned%
         \debug{Aligned: \xebaposter@box@aligned}%
         \path[shape=coordinate] (\boxstartx,0pt |- \xebaposter@box@aligned nw) coordinate(\xebaposter@box@name nw);%
@@ -1025,7 +920,7 @@
         %% Fixed%
         \debug{Fixed}%
         \setlength{\boxstarty}{\xebaposter@box@row\colheight}%
-        \path[shape=coordinate] (\boxstartx,\colheight-\boxstarty) coordinate(\xebaposter@box@name nw);%
+        \path[shape=coordinate] (\boxstartx,\colheight-\boxstarty) coordinate (\xebaposter@box@name nw);%
     }}%
 %
     %% Lower Left Corner%
@@ -1034,11 +929,11 @@
       %% Above = Bottom%
       \debug{Above bottom}%
       \ifthenelse{\equal{\xebaposter@box@below}{notset} \and \equal{\xebaposter@box@aligned}{notset}}{%
-      \path[shape=coordinate] (\boxstartx,\boxheight) coordinate(\xebaposter@box@name nw);%
+      \path[shape=coordinate] (\boxstartx,\boxheight) coordinate (\xebaposter@box@name nw);%
       }{}%
-      \path[shape=coordinate] (\boxstartx+\boxwidth,0pt)                                                           coordinate(\xebaposter@box@name se);%
+      \path[shape=coordinate] (\boxstartx+\boxwidth,0pt) coordinate (\xebaposter@box@name se);%
       }{\ifthenelse{\not \equal{\xebaposter@box@bottomaligned}{notset}}{%
-        \path[shape=coordinate] (\boxstartx+\boxwidth,0pt |- \xebaposter@box@bottomaligned se)                       coordinate(\xebaposter@box@name se);%
+        \path[shape=coordinate] (\boxstartx+\boxwidth,0pt |- \xebaposter@box@bottomaligned se) coordinate (\xebaposter@box@name se);%
       }{{\ifthenelse{\not \equal{\xebaposter@box@above}{notset}}{%
         %% Above = Node%
         \path[shape=coordinate] (\boxstartx+\boxwidth,0pt |- \xebaposter@box@above nw)  +(0pt,\xebaposter@@colspacing) coordinate(\xebaposter@box@name se);%
@@ -1048,36 +943,35 @@
         \ifthenelse{\equal{\xebaposter@box@height}{bottom}}{%
           %% height=bottom%
           \debug{height=bottom}%
-          \path[shape=coordinate] (\boxstartx+\boxwidth,0pt)                                                       coordinate(\xebaposter@box@name se);%
+          \path[shape=coordinate] (\boxstartx+\boxwidth,0pt) coordinate(\xebaposter@box@name se);%
         }{ %% height=auto or fixed%
           \debug{height=auto or fixed}%
-          \path[shape=coordinate] (\xebaposter@box@name nw) ++(\boxwidth,-\boxheight)                                coordinate(\xebaposter@box@name se);%
+          \path[shape=coordinate] (\xebaposter@box@name nw) ++(\boxwidth,-\boxheight) coordinate (\xebaposter@box@name se);%
 	  }}}}}%
 %
         %
     % Set coordinates relative to nw,se%
     \debug{Fixing Coordinates}%
     \path[shape=coordinate]%
-      (\xebaposter@box@name nw) +(0pt,-\xebaposter@box@@boxheaderheight)    coordinate(\xebaposter@box@name tnw)%
-      (\xebaposter@box@name nw |- \xebaposter@box@name se)                  coordinate(\xebaposter@box@name sw)%
-      (\xebaposter@box@name se |- \xebaposter@box@name nw)                  coordinate(\xebaposter@box@name ne)%
-      (\xebaposter@box@name ne) +(0pt,-\xebaposter@box@@boxheaderheight)    coordinate(\xebaposter@box@name tne)%
+      (\xebaposter@box@name nw) +(0pt,-\xebaposter@box@@boxheaderheight) coordinate(\xebaposter@box@name tnw)%
+      (\xebaposter@box@name nw |- \xebaposter@box@name se) coordinate(\xebaposter@box@name sw)%
+      (\xebaposter@box@name se |- \xebaposter@box@name nw) coordinate(\xebaposter@box@name ne)%
+      (\xebaposter@box@name ne) +(0pt,-\xebaposter@box@@boxheaderheight) coordinate(\xebaposter@box@name tne)%
 %
-      (\xebaposter@box@name nw)  +(-0.025em,0pt)                          coordinate(\xebaposter@box@name outer nw)%
-      (\xebaposter@box@name tnw) +(-0.025em,0pt)                          coordinate(\xebaposter@box@name outer tnw)%
-      (\xebaposter@box@name sw)  +(-0.025em,0pt)                          coordinate(\xebaposter@box@name outer sw)%
+      (\xebaposter@box@name nw)  +(-0.025em,0pt) coordinate(\xebaposter@box@name outer nw)%
+      (\xebaposter@box@name tnw) +(-0.025em,0pt) coordinate(\xebaposter@box@name outer tnw)%
+      (\xebaposter@box@name sw)  +(-0.025em,0pt) coordinate(\xebaposter@box@name outer sw)%
 %
-      (\xebaposter@box@name ne)  +( 0.025em,0pt)                          coordinate(\xebaposter@box@name outer ne)%
-      (\xebaposter@box@name tne) +( 0.025em,0pt)                          coordinate(\xebaposter@box@name outer tne)%
-      (\xebaposter@box@name se)  +( 0.025em,0pt)                          coordinate(\xebaposter@box@name outer se);%
+      (\xebaposter@box@name ne)  +( 0.025em,0pt) coordinate(\xebaposter@box@name outer ne)%
+      (\xebaposter@box@name tne) +( 0.025em,0pt) coordinate(\xebaposter@box@name outer tne)%
+      (\xebaposter@box@name se)  +( 0.025em,0pt) coordinate(\xebaposter@box@name outer se);%
 %
       %% Setting the bg colors of the box header
       \xebaposterHeaderSetShade{headerColorOne}{headerColorTwo}{borderColor}%
 %
-      \tikzstyle{rc}=[rounded corners=\xebaposter@box@@cornerradius];%
-      \tikzstyle{src}=[rounded corners=0.5em];%
+      \tikzstyle{rc}=[rounded corners=\xebaposter@box@@cornerradius]%
+      \tikzstyle{src}=[rounded corners=0.5em]%
 %
-
     %% Now that everything is set up, draw the actual box, with bg and header
     \begin{scope}[line width=\xebaposter@box@linewidth]%
       %% Header%
@@ -1085,8 +979,8 @@
       \debug{Header-Shape: \xebaposter@box@headershape, header-border: \xebaposter@box@headerborder (\xebaposter@box@headerbordernr)}%
       % TODO: Also turn this last ifcase construct into a handler function
       %       We only need to determine (fill|shade)(draw|)...
-       \xebaposterHeaderDrawBackground{bgColorOne}{bgColorTwo}{borderColor}
-       \xebaposterHeaderDrawBorder{borderColor}
+      \xebaposterHeaderDrawBackground{bgColorOne}{bgColorTwo}{borderColor}%
+      \xebaposterHeaderDrawBorder{}%{borderColor}%
       \ifcase\xebaposter@box@headerbordernr\relax%
         % open
         \ifthenelse{\equal{\xebaposter@box@headershade}{plain}}{%
@@ -1094,26 +988,26 @@
         }{%
           \shadedraw [style=header colors] \xebaposterHeaderGetShape;%
         }%
-      \or
+      \or%
         % closed
         \ifthenelse{\equal{\xebaposter@box@headershade}{plain}}{%
           \filldraw  [style=header colors] \xebaposterHeaderGetShape -- cycle;%
         }{%
           \shadedraw [style=header colors] \xebaposterHeaderGetShape -- cycle;%
         }%
-      \or
+      \or%
         % none
         \ifthenelse{\equal{\xebaposter@box@headershade}{plain}}{%
           \fill      [style=header colors] \xebaposterHeaderGetShape;%
         }{%
           \shade     [style=header colors] \xebaposterHeaderGetShape;%
         }%
-      \fi
+      \fi%
       %
       %% Draw the text inside the box header:
-    %%% %%% %%% %%% %%% buggy part because of color!! %%% %%% %%% %%% %%% %%% 
+    %%% %%% %%% %%% %%% buggy part because of color!! %%% %%% %%% %%% %%% %%%
       \xebaposterHeaderDrawText{\hbox{{\color{headerFontColor}\xebaposter@box@headerfont%
-      {\xebaposter@box@title}}}};%
+      {\xebaposter@box@title}}}}%
       %
       %% Text borders (border around boxes)
       \debug{Poster boxes}%
@@ -1159,47 +1053,47 @@
     %
     %
     %      % Draw Header%
-    \draw (north west) +(0em,1em+0.5\headerheight) node(image)[anchor=west]   { {\usebox{
-\if@xebaposter@persian
-    \xebaposter@titleimage@right
-\else
-    \xebaposter@titleimage@left
-\fi     }} };%
-    \draw (north east) +(0em,1em+0.5\headerheight) node(logo) [anchor=east]   { {\usebox{
-\if@xebaposter@persian
-    \xebaposter@titleimage@left
-\else 
-    \xebaposter@titleimage@right
-\fi     }} };%
+    \draw (north west) +(0em,1em+0.5\headerheight) node(image)[anchor=west]  {{\usebox{%
+\if@xebaposter@persian%
+    \xebaposter@titleimage@right%
+\else%
+    \xebaposter@titleimage@left%
+\fi}}};%
+    \draw (north east) +(0em,1em+0.5\headerheight) node(logo) [anchor=east]   {{\usebox{%
+\if@xebaposter@persian%
+    \xebaposter@titleimage@left%
+\else%
+    \xebaposter@titleimage@right%
+\fi}}};%
     %
     \ifxebaposter@eyecatcher% Has eye catcher%
       \draw (image.east) node(title)[anchor=west,text width=\xebaposter@titleimage@textwidth]{%
         \begin{minipage}{\xebaposter@titleimage@textwidth}%
           \begin{center}%
-\if@xebaposter@persian
-          \textbf{\Huge \rl{#3}}\\%
-          {\Large \rl{#4}}%
-\else
+\if@xebaposter@persian%
+          \textbf{\Huge\rl{#3}}\\%
+          {\Large\rl{#4}}%
+\else%
           \textbf{\Huge #3}\\%
           {\Large #4}%
-\fi          
+\fi%
           \end{center}%
         \end{minipage}%
       };%
     \else% Has no eye catcher
-      \draw (image.east) node(title)[anchor=west]  { {\begin{minipage}{\xebaposter@titleimage@textwidth}
-\if@xebaposter@persian      
-      \persian{\bfseries\Huge\rl{#3}}\\{\Large\rl{#4}}
-\else
-      {\bfseries\Huge #3}\\{\Large #4}
-\fi      
-      \end{minipage}} };%
-    \fi
+      \draw (image.east) node(title)[anchor=west]  {{\begin{minipage}{\xebaposter@titleimage@textwidth}
+\if@xebaposter@persian%
+      \persian{\bfseries\Huge\rl{#3}}\\{\Large\rl{#4}}%
+\else%
+      {\bfseries\Huge #3}\\{\Large #4}%
+\fi%
+      \end{minipage}}};%
+    \fi%
   }% END poster begin
 % The body
   {% BEGIN poster end
     % The end, draw gridlines if neccesary
-    \ifxebaposter@grid
+    \ifxebaposter@grid%
       \newdimen{\gridpos}%
       \pgfmathsetmacro{\z}{\xebaposter@columns-1}%
       \foreach \y in {0,...,\z}%
@@ -1212,15 +1106,15 @@
       %% Explicitly list all percentages, because with {0.0, 0.1, ..., 1.0} we
       %% get rounding errors in the displayed numbers!
       \foreach \y in {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0}%
-        {\if@xebaposter@persian
+        {\if@xebaposter@persian%
             \draw[draw=green,draw opacity=0.7]  (\textwidth,\colheight-\y\colheight) --%
-                (0pt,\colheight-\y\colheight) node[anchor=east] {\y};%        
-        \else
+                (0pt,\colheight-\y\colheight) node[anchor=east] {\y};%
+        \else%
             \draw[draw=green,draw opacity=0.7] (0pt,\colheight-\y\colheight)  --%
                 (\textwidth,\colheight-\y\colheight) node[anchor=west] {\y};%
-        \fi|}%    
+        \fi|}%
     \fi%
   \end{tikzpicture}%
 %  \xkvview{}
- \par
+  \par%
   }% END poster end

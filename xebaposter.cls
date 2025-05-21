@@ -1,7 +1,7 @@
 %%
 %% This is file `xebaposter.cls'
 %%
-%% Copyright © 2015-2022 by Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
+%% Copyright © 2015-2025 by Javad Razavian <javadr@gmail.com>
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
 %% of this license or (at your option) any later version.
@@ -13,8 +13,8 @@
 %% This work has the LPPL maintenance status `maintained'.
 %%
 %% This work is “author-maintained” (as per LPPL maintenance status)
-%% by Seiied-Mohammad-Javad Razavian.
-%% The Current Maintainer of this work is Seiied-Mohammad-Javad Razavian
+%% by Javad Razavian.
+%% The Current Maintainer of this work is Javad Razavian
 %%
 %% A relatively comfortable latex class to produce posters with a grid based
 %% layout. It comes with a number of combinable styles and is (maybe only for
@@ -23,14 +23,14 @@
 %%
 %% Copyright (C) 2007-2011 Brian Amberg
 %% Copyright (C) 2011      Reinhold Kainhofer <reinhold@kainhofer.com>
-%% Copyright (C) 2015-2022      Seiied-Mohammad-Javad Razavian <javadr@gmail.com>
+%% Copyright (C) 2015-2025      Javad Razavian <javadr@gmail.com>
 %%
-\ProvidesClass{xebaposter}[2022/06/08 v2.53 xebaposter class]
+\ProvidesClass{xebaposter}[2025/05/21 v2.54 xebaposter class]
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \LoadClass{article}
-\typeout{baposter: Brian Amberg, 2007, 2008, 2009, 2010, 2011 | http://www.brian-amberg.de/uni/poster/}
+\typeout{baposter: Brian Amberg, 2007, 2008, 2009, 2010, 2011 | https://web.archive.org/web/20230912095502/http://www.brian-amberg.de/uni/poster/}
 \typeout{baposter: Reinhold Kainhofer, 2011 | http://reinhold.kainhofer.com/}
-\typeout{xebaposter: Seiied-Mohammad-Javad Razavian, 2015-2016 | https://github.com/javadr/xebaposter/}
+\typeout{xebaposter: Javad Razavian, 2015-2025 | https://github.com/javadr/xebaposter/}
 %
 %% Define lengths only once on inclusion, such that we can make multiple posters
 \newlength{\xebaposter@basepaperwidth}%
@@ -109,19 +109,19 @@
 \DeclareOptionX{portrait}{}%
 %
 \newcommand{\xebaposter@setfinalpapersize}[2]{%
-\if@geometryKnowsThisSize%
-  \setlength{\xebaposter@finalpaperwidth}{#1}%
-  \setlength{\xebaposter@finalpaperheight}{#2}%
-\else%
-\if@landscape%
-% Transpose length, if geometry does not handle the papersize based on the key
-  \setlength{\xebaposter@finalpaperwidth}{#2}%
-  \setlength{\xebaposter@finalpaperheight}{#1}%
-\else%
-  \setlength{\xebaposter@finalpaperwidth}{#1}%
-  \setlength{\xebaposter@finalpaperheight}{#2}%
-\fi%
-\fi%
+	\if@geometryKnowsThisSize%
+		\setlength{\xebaposter@finalpaperwidth}{#1}%
+		\setlength{\xebaposter@finalpaperheight}{#2}%
+	\else%
+		\if@landscape%
+			% Transpose length, if geometry does not handle the papersize based on the key
+			\setlength{\xebaposter@finalpaperwidth}{#2}%
+			\setlength{\xebaposter@finalpaperheight}{#1}%
+		\else%
+			\setlength{\xebaposter@finalpaperwidth}{#1}%
+			\setlength{\xebaposter@finalpaperheight}{#2}%
+		\fi%
+	\fi%
 }%
 %
 % Default paperwidth and paperheight = a0paper
@@ -190,20 +190,20 @@
 \ProcessOptionsX%
 %
 \if@debug%
-\newcommand{\debug}[1]{\typeout{#1}}%
+	\newcommand{\debug}[1]{\typeout{#1}}%
 \else%
-\newcommand{\debug}[1]{}%
+	\newcommand{\debug}[1]{}%
 \fi%
 %
 %%% when user didn't set persian/latin option, if he/she uses xepersian the default will be persian, otherwise default will be latin.
 \if@xebaposter@latin%
-    \relax%
+	\relax%
 \else%
-    \if@xebaposter@persian%
-        \relax%
-    \else%
-        \AtBeginDocument{\@ifpackageloaded{xepersian}{\@xebaposter@persiantrue}{}}%
-    \fi%
+	\if@xebaposter@persian%
+		\relax%
+	\else%
+		\AtBeginDocument{\@ifpackageloaded{xepersian}{\@xebaposter@persiantrue}{}}%
+	\fi%
 \fi%
 %
 \setlength{\xebaposter@basepaperwidth} {\xebaposter@fontscale\xebaposter@finalpaperwidth}%
@@ -221,23 +221,23 @@
 \typeout{BasePaperwidth=\the\xebaposter@basepaperwidth}%
 \typeout{BasePaperheight=\the\xebaposter@basepaperheight}%
 \RequirePackage[%
-   paperwidth=\xebaposter@basepaperwidth,%
-   paperheight=\xebaposter@basepaperheight,%
-   tmargin=\xebaposter@basemargin,%
-   bmargin=\xebaposter@basemargin,%
-   lmargin=\xebaposter@basemarginleft,%
-   rmargin=\xebaposter@basemarginright,%
-   ]{geometry}%
+	paperwidth=\xebaposter@basepaperwidth,%
+	paperheight=\xebaposter@basepaperheight,%
+	tmargin=\xebaposter@basemargin,%
+	bmargin=\xebaposter@basemargin,%
+	lmargin=\xebaposter@basemarginleft,%
+	rmargin=\xebaposter@basemarginright,%
+]{geometry}%
 %
 \RequirePackage{pgfpages}%
 \if@landscape%
-\if@geometryKnowsThisSize%
-\pgfpagesuselayout{resize to}[physical paper width=\xebaposter@finalpaperheight,physical paper height=\xebaposter@finalpaperwidth]%
+	\if@geometryKnowsThisSize%
+		\pgfpagesuselayout{resize to}[physical paper width=\xebaposter@finalpaperheight,physical paper height=\xebaposter@finalpaperwidth]%
+	\else%
+		\pgfpagesuselayout{resize to}[physical paper width=\xebaposter@finalpaperwidth,physical paper height=\xebaposter@finalpaperheight]%
+	\fi%
 \else%
-\pgfpagesuselayout{resize to}[physical paper width=\xebaposter@finalpaperwidth,physical paper height=\xebaposter@finalpaperheight]%
-\fi%
-\else%
-\pgfpagesuselayout{resize to}[physical paper width=\xebaposter@finalpaperwidth,physical paper height=\xebaposter@finalpaperheight]%
+	\pgfpagesuselayout{resize to}[physical paper width=\xebaposter@finalpaperwidth,physical paper height=\xebaposter@finalpaperheight]%
 \fi%
 %
 %
@@ -293,16 +293,16 @@
 %
 % background can be one of: shadeLR, shadeTB, plain, user, none
 \define@choicekey*+[ba]{poster}{background}%
-    [\xebaposter@background\xebaposter@backgroundnr]%
-    {shadeLR, shadeTB, plain, user, none} [plain] {%
-  \debug{Poster background: \xebaposter@background}%
-  \renewcommand{\xebaposterPosterDrawBackground}[2]{%
-      \csname xebaposter@background@\xebaposter@background\endcsname{##1}{##2}}%
+[\xebaposter@background\xebaposter@backgroundnr]%
+{shadeLR, shadeTB, plain, user, none} [plain] {%
+	\debug{Poster background: \xebaposter@background}%
+	\renewcommand{\xebaposterPosterDrawBackground}[2]{%
+		\csname xebaposter@background@\xebaposter@background\endcsname{##1}{##2}}%
 }{%
-  \PackageWarning{xebaposter}{Unknown background `\xebaposter@background' (use
-      shadeLR, shadeTB, plain, none, or user). If user is used, you also
-      have to define \background{...}.}%
-  \renewcommand{\xebaposterPosterDrawBackground}[2]{\xebaposter@background@none{##1}{##2}}%
+	\PackageWarning{xebaposter}{Unknown background `\xebaposter@background' (use
+		shadeLR, shadeTB, plain, none, or user). If user is used, you also
+		have to define \background{...}.}%
+	\renewcommand{\xebaposterPosterDrawBackground}[2]{\xebaposter@background@none{##1}{##2}}%
 }%
 %
 %
@@ -318,76 +318,76 @@
 % roundedleft, roundedsmall, faded; UNIMPLEMENTED: roundedright
 \edef\xebaposter@box@textborder@validvalues{none,bars,coils,triangles,rectangle,rounded,roundedleft,roundedsmall,faded}%
 \define@choicekey*+[ba]{posterbox}{textborder}%
-    [\xebaposter@box@textborder\xebaposter@box@textbordernr]%
-    {none,bars,coils,triangles,rectangle,rounded,roundedleft,roundedright,roundedsmall,faded} [rectangle] {%
-  \debug{Text border: \xebaposter@box@textborder}%
-  \renewcommand{\xebaposterBoxGetShape}{%
-      \csname xebaposter@box@boxshape@\xebaposter@box@textborder\endcsname}%
-  \renewcommand{\xebaposterBoxDrawBorder}[1]{%
-      \csname xebaposter@box@drawborder@\xebaposter@box@textborder\endcsname{##1}}%
+[\xebaposter@box@textborder\xebaposter@box@textbordernr]%
+{none,bars,coils,triangles,rectangle,rounded,roundedleft,roundedright,roundedsmall,faded} [rectangle] {%
+	\debug{Text border: \xebaposter@box@textborder}%
+	\renewcommand{\xebaposterBoxGetShape}{%
+		\csname xebaposter@box@boxshape@\xebaposter@box@textborder\endcsname}%
+	\renewcommand{\xebaposterBoxDrawBorder}[1]{%
+		\csname xebaposter@box@drawborder@\xebaposter@box@textborder\endcsname{##1}}%
 }{%
-  \PackageWarning{xebaposter}{Unknown text-border style `\xebaposter@box@textborder'.
-      Edit your file to choose a valid option (\xebaposter@box@textborder@validvalues).}%
-  \renewcommand{\xebaposterBoxGetShape}{\xebaposter@boxshape@rectangle}%
-  \renewcommand{\xebaposterBoxDrawBorder}[1]{\xebaposter@drawborder@rectangle{##1}}%
+	\PackageWarning{xebaposter}{Unknown text-border style `\xebaposter@box@textborder'.
+		Edit your file to choose a valid option (\xebaposter@box@textborder@validvalues).}%
+	\renewcommand{\xebaposterBoxGetShape}{\xebaposter@boxshape@rectangle}%
+	\renewcommand{\xebaposterBoxDrawBorder}[1]{\xebaposter@drawborder@rectangle{##1}}%
 }%
 %
 % boxshade can be one of: shadelr, shaderl, shadetb, plain, none
 \define@choicekey*+[ba]{posterbox}{boxshade}%
-    [\xebaposter@box@boxshade\xebaposter@box@boxshadenr]%
-    {shadelr,shaderl,shadetb,plain,none} [none] {%
-  \debug{Box shade: \xebaposter@box@boxshade}%
-  \renewcommand{\xebaposterBoxDrawBackground}[2]{%
-      \csname xebaposter@box@drawbackground@\xebaposter@box@boxshade\endcsname{##1}{##2}}%
+[\xebaposter@box@boxshade\xebaposter@box@boxshadenr]%
+{shadelr,shaderl,shadetb,plain,none} [none] {%
+	\debug{Box shade: \xebaposter@box@boxshade}%
+	\renewcommand{\xebaposterBoxDrawBackground}[2]{%
+		\csname xebaposter@box@drawbackground@\xebaposter@box@boxshade\endcsname{##1}{##2}}%
 }{%
-  \PackageWarning{xebaposter}{Unknown boxshade style `\xebaposter@boxshade'.
-      Edit your file to choose a valid option.}%
-  \renewcommand{\xebaposterBoxDrawBackground}[2]{\xebaposter@box@drawbackground@none{##1}{##2}}%
+	\PackageWarning{xebaposter}{Unknown boxshade style `\xebaposter@boxshade'.
+		Edit your file to choose a valid option.}%
+	\renewcommand{\xebaposterBoxDrawBackground}[2]{\xebaposter@box@drawbackground@none{##1}{##2}}%
 }%
 %
 % headershade can be one of: shadelr,shaderl, shadetb, shadetbinverse, plain
 \define@choicekey*+[ba]{posterbox}{headershade}%
-    [\xebaposter@box@headershade\xebaposter@box@headershadenr]%
-    {shadelr,shaderl, shadetb, shadetbinverse, plain} [shadelr] {%
-  \debug{Header shade: \xebaposter@box@headershade}%
-  \renewcommand{\xebaposterHeaderSetShade}[3]{%
-      \csname xebaposter@box@headershade@\xebaposter@box@headershade\endcsname{##1}{##2}{##3}}
+[\xebaposter@box@headershade\xebaposter@box@headershadenr]%
+{shadelr,shaderl, shadetb, shadetbinverse, plain} [shadelr] {%
+	\debug{Header shade: \xebaposter@box@headershade}%
+	\renewcommand{\xebaposterHeaderSetShade}[3]{%
+		\csname xebaposter@box@headershade@\xebaposter@box@headershade\endcsname{##1}{##2}{##3}}
 }{%
-  \PackageWarning{xebaposter}{Unknown headershade style `\xebaposter@box@headershade'.
-      Edit your file to choose a valid option.}%
-  \renewcommand{\xebaposterHeaderSetShade}[3]{\xebaposter@box@headershade@none{##1}{##2}{##3}}%
+	\PackageWarning{xebaposter}{Unknown headershade style `\xebaposter@box@headershade'.
+		Edit your file to choose a valid option.}%
+	\renewcommand{\xebaposterHeaderSetShade}[3]{\xebaposter@box@headershade@none{##1}{##2}{##3}}%
 }%
 %
 % headershape can be one of: rectangle, rounded, smallrounded, roundedleft, roundedright
 \define@choicekey*+[ba]{posterbox}{headershape}%
-    [\xebaposter@box@headershape\xebaposter@box@headershapenr]%
-    {rectangle,rounded,smallrounded,roundedleft,roundedright} [roundedright] {%
-  \debug{Header shape: \xebaposter@box@headershape}%
-  \renewcommand{\xebaposterHeaderGetShape}{%
-      \csname xebaposter@box@headershape@\xebaposter@box@headershape\endcsname}%
-  \renewcommand{\xebaposterHeaderDrawText}[1]{%
-      \csname xebaposter@box@headerdrawtext@\xebaposter@box@headershape\endcsname{##1}}%
-  \renewcommand{\xebaposterHeaderDrawBorder}[1]{%
-      \csname xebaposter@box@headerdrawborder@\xebaposter@box@headershape\endcsname{##1}}%
+[\xebaposter@box@headershape\xebaposter@box@headershapenr]%
+{rectangle,rounded,smallrounded,roundedleft,roundedright} [roundedright] {%
+	\debug{Header shape: \xebaposter@box@headershape}%
+	\renewcommand{\xebaposterHeaderGetShape}{%
+		\csname xebaposter@box@headershape@\xebaposter@box@headershape\endcsname}%
+	\renewcommand{\xebaposterHeaderDrawText}[1]{%
+		\csname xebaposter@box@headerdrawtext@\xebaposter@box@headershape\endcsname{##1}}%
+	\renewcommand{\xebaposterHeaderDrawBorder}[1]{%
+		\csname xebaposter@box@headerdrawborder@\xebaposter@box@headershape\endcsname{##1}}%
 }{%
-  \PackageWarning{xebaposter}{Unknown headershape style `\xebaposter@headershape'.
-      Edit your file to choose a valid option.}%
-  \renewcommand{\xebaposterHeaderGetShape}{\xebaposter@box@headershape@rectangle}%
-  \renewcommand{\xebaposterHeaderDrawText}[1]{\xebaposter@box@headerdrawtext@rectangle{##1}}%
-  \renewcommand{\xebaposterHeaderDrawBorder}[1]{\xebaposter@box@headerdrawborder@rectangle{##1}}%
+	\PackageWarning{xebaposter}{Unknown headershape style `\xebaposter@headershape'.
+		Edit your file to choose a valid option.}%
+	\renewcommand{\xebaposterHeaderGetShape}{\xebaposter@box@headershape@rectangle}%
+	\renewcommand{\xebaposterHeaderDrawText}[1]{\xebaposter@box@headerdrawtext@rectangle{##1}}%
+	\renewcommand{\xebaposterHeaderDrawBorder}[1]{\xebaposter@box@headerdrawborder@rectangle{##1}}%
 }%
 %
 % headerborder can be one of: open, closed, none
 \define@choicekey*+[ba]{posterbox}{headerborder}%
-    [\xebaposter@box@headerborder\xebaposter@box@headerbordernr]%
-    {open,closed,none} [open] {%
-  \debug{Header border: \xebaposter@box@headerborder}%
-%   \renewcommand{\xebaposterHeaderBorder}{
-%       \csname xebaposter@headerborder@\xebaposter@box@headerborder\endcsname}
+[\xebaposter@box@headerborder\xebaposter@box@headerbordernr]%
+{open,closed,none} [open] {%
+	\debug{Header border: \xebaposter@box@headerborder}%
+	%   \renewcommand{\xebaposterHeaderBorder}{
+	%       \csname xebaposter@headerborder@\xebaposter@box@headerborder\endcsname}
 }{%
-  \PackageWarning{xebaposter}{Unknown headerborder style `\xebaposter@headerborder'.
-      Edit your file to choose a valid option.}%
-%   \renewcommand{\xebaposterHeaderBorder}{\xebaposter@box@headerborder@rectangle}
+	\PackageWarning{xebaposter}{Unknown headerborder style `\xebaposter@headerborder'.
+		Edit your file to choose a valid option.}%
+	%   \renewcommand{\xebaposterHeaderBorder}{\xebaposter@box@headerborder@rectangle}
 }%
 %
 %
@@ -414,48 +414,48 @@
 %
 % Set some default values, the poster and posterbox environments can override:
 \setkeys[ba]{poster}{%
-  % Debug grid
-  grid=false,%
-  % Is there an eyecatcher image
-  eyecatcher=true,%
-  columns={},%
-  % Colours
-  bgColorOne=xebaposter@silver,%
-  bgColorTwo=green,%
-  %
-  colspacing=1em,%
-  headerheight=0.1\textheight,%
-  background=shadeLR,%
+	% Debug grid
+	grid=false,%
+	% Is there an eyecatcher image
+	eyecatcher=true,%
+	columns={},%
+	% Colours
+	bgColorOne=xebaposter@silver,%
+	bgColorTwo=green,%
+	%
+	colspacing=1em,%
+	headerheight=0.1\textheight,%
+	background=shadeLR,%
 }{}%
 \setkeys[ba]{posterbox}{%
-  % Position
-  column=0,row=0,span=1,%
-  below=notset,above=notset,%
-  bottomaligned=notset,%
-  aligned=notset,%
-  height=auto,%
-  % Name
-  name=noname,%
-  % Box design: border:
-  linewidth=2pt,%
-  borderColor=yellow,%
-  cornerradius=1em,%
-  % text box:
-  textfont={},%
-  boxshade=plain,%
-  boxColorOne=magenta,%
-  boxColorTwo=cyan,%
-  textborder=faded,%
-  boxpadding=0.5em,%
-  % header
-  headerfont=\scshape\Large,% or headerfont=\color{white}\textsf\textbf
-  headerFontColor=black,%
-  headerColorOne=red,%
-  headerColorTwo=brown,%
-  headershape=rectangle,%
-  headershade=shadelr,%
-  headerborder=none,%
-  boxheaderheight=2em,%
+	% Position
+	column=0,row=0,span=1,%
+	below=notset,above=notset,%
+	bottomaligned=notset,%
+	aligned=notset,%
+	height=auto,%
+	% Name
+	name=noname,%
+	% Box design: border:
+	linewidth=2pt,%
+	borderColor=yellow,%
+	cornerradius=1em,%
+	% text box:
+	textfont={},%
+	boxshade=plain,%
+	boxColorOne=magenta,%
+	boxColorTwo=cyan,%
+	textborder=faded,%
+	boxpadding=0.5em,%
+	% header
+	headerfont=\scshape\Large,% or headerfont=\color{white}\textsf\textbf
+	headerFontColor=black,%
+	headerColorOne=red,%
+	headerColorTwo=brown,%
+	headershape=rectangle,%
+	headershade=shadelr,%
+	headerborder=none,%
+	boxheaderheight=2em,%
 }{}%
 %
 %
@@ -465,38 +465,38 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \newcommand{\xebaposter@background@shaderl}[2]{%
-  \debug{xebaposter: Using shade right left background.}%
-    \begin{tikzpicture}[remember picture,overlay]%
-    \shade [shading=axis,left color=#2,right color=#1] (current page.north east)%
-           rectangle(current page.south west);%
-  \end{tikzpicture}%
+	\debug{xebaposter: Using shade right left background.}%
+	\begin{tikzpicture}[remember picture,overlay]%
+		\shade [shading=axis,left color=#2,right color=#1] (current page.north east)%
+		rectangle(current page.south west);%
+	\end{tikzpicture}%
 }%
 \newcommand{\xebaposter@background@shadelr}[2]{%
-  \debug{xebaposter: Using shade left right background.}%
-    \begin{tikzpicture}[remember picture,overlay]%
-    \shade [shading=axis,left color=#1,right color=#2] (current page.north west)%
-           rectangle(current page.south east);%
-  \end{tikzpicture}%
+	\debug{xebaposter: Using shade left right background.}%
+	\begin{tikzpicture}[remember picture,overlay]%
+		\shade [shading=axis,left color=#1,right color=#2] (current page.north west)%
+		rectangle(current page.south east);%
+	\end{tikzpicture}%
 }%
 \newcommand{\xebaposter@background@shadetb}[2]{%
-  \debug{xebaposter: Using shade top to bottom background.}%
-    \begin{tikzpicture}[remember picture,overlay]%
-    \shade [shading=axis,top color=#1,bottom color=#2] (current page.north west)%
-           rectangle(current page.south east);%
-  \end{tikzpicture}%
+	\debug{xebaposter: Using shade top to bottom background.}%
+	\begin{tikzpicture}[remember picture,overlay]%
+		\shade [shading=axis,top color=#1,bottom color=#2] (current page.north west)%
+		rectangle(current page.south east);%
+	\end{tikzpicture}%
 }%
 \newcommand{\xebaposter@background@plain}[2]{%
-  \debug{xebaposter: Using plain background.}%
-  \begin{tikzpicture}[remember picture,overlay]%
-    \fill [#1] {(current page.north west) rectangle (current page.south east)};%
-  \end{tikzpicture}%
+	\debug{xebaposter: Using plain background.}%
+	\begin{tikzpicture}[remember picture,overlay]%
+		\fill [#1] {(current page.north west) rectangle (current page.south east)};%
+	\end{tikzpicture}%
 }%
 \newcommand{\xebaposter@background@user}[2]{%
-  \debug{xebaposter: Using user background.}%
-    {\xebaposter@backgroundCmd}%
+	\debug{xebaposter: Using user background.}%
+	{\xebaposter@backgroundCmd}%
 }%
 \newcommand{\xebaposter@background@none}[2]{%
-  \debug{xebaposter: Using no background.}%
+	\debug{xebaposter: Using no background.}%
 }%
 %
 %
@@ -507,32 +507,32 @@
 %
 \newcommand{\xebaposter@box@boxshape@none}{\xebaposter@box@boxshape@rectangle}%
 \newcommand{\xebaposter@box@boxshape@bars}{%
-  (\xebaposter@box@name tnw) -- (\xebaposter@box@name sw) %
-  (\xebaposter@box@name se) -- (\xebaposter@box@name tne)%
+	(\xebaposter@box@name tnw) -- (\xebaposter@box@name sw) %
+	(\xebaposter@box@name se) -- (\xebaposter@box@name tne)%
 }%
 \newcommand{\xebaposter@box@boxshape@coils}{\xebaposter@box@boxshape@bars}%
 \newcommand{\xebaposter@box@boxshape@triangles}{\xebaposter@box@boxshape@bars}%
 \newcommand{\xebaposter@box@boxshape@rectangle}{%
-  (\xebaposter@box@name tnw) -- (\xebaposter@box@name sw) -- %
-  (\xebaposter@box@name se) -- (\xebaposter@box@name tne)%
+	(\xebaposter@box@name tnw) -- (\xebaposter@box@name sw) -- %
+	(\xebaposter@box@name se) -- (\xebaposter@box@name tne)%
 }%
 \newcommand{\xebaposter@box@boxshape@faded}{%
-  (\xebaposter@box@name tnw) -- (\xebaposter@box@name sw) %
-  (\xebaposter@box@name tne) -- (\xebaposter@box@name se)%
-  }%
+	(\xebaposter@box@name tnw) -- (\xebaposter@box@name sw) %
+	(\xebaposter@box@name tne) -- (\xebaposter@box@name se)%
+}%
 \newcommand{\xebaposter@box@boxshape@rounded}{%
-  [rc] \xebaposter@box@boxshape@rectangle%
+	[rc] \xebaposter@box@boxshape@rectangle%
 }%
 \newcommand{\xebaposter@box@boxshape@roundedsmall}{%
-  [src] \xebaposter@box@boxshape@rectangle%
+	[src] \xebaposter@box@boxshape@rectangle%
 }%
 \newcommand{\xebaposter@box@boxshape@roundedleft}{%
-  (\xebaposter@box@name tnw) {[rc]-- (\xebaposter@box@name sw)} -- %
-  (\xebaposter@box@name se) -- (\xebaposter@box@name tne)%
+	(\xebaposter@box@name tnw) {[rc]-- (\xebaposter@box@name sw)} -- %
+	(\xebaposter@box@name se) -- (\xebaposter@box@name tne)%
 }%
 \newcommand{\xebaposter@box@boxshape@roundedright}{%
-  (\xebaposter@box@name tnw) -- (\xebaposter@box@name sw) {[rc]-- %
-  (\xebaposter@box@name se)} -- (\xebaposter@box@name tne)%
+	(\xebaposter@box@name tnw) -- (\xebaposter@box@name sw) {[rc]-- %
+			(\xebaposter@box@name se)} -- (\xebaposter@box@name tne)%
 }%
 %
 %
@@ -542,23 +542,23 @@
 %
 % These functions take no arguments
 \newcommand{\xebaposter@box@drawbackground@none}[2]{%
-  \tikzstyle{box colors}=[]%
+	\tikzstyle{box colors}=[]%
 }%
 \newcommand{\xebaposter@box@drawbackground@plain}[2]{%
-  \tikzstyle{box colors}=[fill=#1]%
-  \fill[box colors] \xebaposterBoxGetShape;%
+	\tikzstyle{box colors}=[fill=#1]%
+	\fill[box colors] \xebaposterBoxGetShape;%
 }%
 \newcommand{\xebaposter@box@drawbackground@shadelr}[2]{%
-  \tikzstyle{box colors}=[shading=axis, left color=#1, right color=#2]%
-  \fill[box colors] \xebaposterBoxGetShape;%
+	\tikzstyle{box colors}=[shading=axis, left color=#1, right color=#2]%
+	\fill[box colors] \xebaposterBoxGetShape;%
 }%
 \newcommand{\xebaposter@box@drawbackground@shaderl}[2]{%
-  \tikzstyle{box colors}=[shading=axis, left color=#2, right color=#1]%
-  \fill[box colors] \xebaposterBoxGetShape;%
+	\tikzstyle{box colors}=[shading=axis, left color=#2, right color=#1]%
+	\fill[box colors] \xebaposterBoxGetShape;%
 }%
 \newcommand{\xebaposter@box@drawbackground@shadetb}[2]{%
-  \tikzstyle{box colors}=[shading=axis, top color=#1, bottom color=#2]%
-  \fill[box colors] \xebaposterBoxGetShape;%
+	\tikzstyle{box colors}=[shading=axis, top color=#1, bottom color=#2]%
+	\fill[box colors] \xebaposterBoxGetShape;%
 }%
 %
 %
@@ -570,35 +570,35 @@
 % These functions take two arguments: borderColor
 \newcommand{\xebaposter@box@drawborder@none}[1]{}%
 \newcommand{\xebaposter@box@drawborder@bars}[1]{%
-  \draw[color=#1] \xebaposterBoxGetShape;%
+	\draw[color=#1] \xebaposterBoxGetShape;%
 }%
 \newcommand{\xebaposter@box@drawborder@coils}[1]{%
-  \draw[color=#1,segment amplitude=0.35em,segment length=0.4em,snake=coil] \xebaposterBoxGetShape;%
+	\draw[color=#1,segment amplitude=0.35em,segment length=0.4em,snake=coil] \xebaposterBoxGetShape;%
 }%
 \newcommand{\xebaposter@box@drawborder@triangles}[1]{%
-  \draw[color=#1,segment amplitude=0.2em,segment length=0.4em,snake=triangles] \xebaposterBoxGetShape;%
+	\draw[color=#1,segment amplitude=0.2em,segment length=0.4em,snake=triangles] \xebaposterBoxGetShape;%
 }%
 \newcommand{\xebaposter@box@drawborder@rectangle}[1]{%
-  \draw[color=#1] \xebaposterBoxGetShape;%
+	\draw[color=#1] \xebaposterBoxGetShape;%
 }%
 \newcommand{\xebaposter@box@drawborder@rounded}[1]{%
-  \draw[color=#1] \xebaposterBoxGetShape;%
+	\draw[color=#1] \xebaposterBoxGetShape;%
 }%
 \newcommand{\xebaposter@box@drawborder@roundedleft}[1]{%
-  \draw[color=#1] \xebaposterBoxGetShape;%
+	\draw[color=#1] \xebaposterBoxGetShape;%
 }%
 \newcommand{\xebaposter@box@drawborder@roundedright}[1]{%
-  \draw[color=#1] \xebaposterBoxGetShape;%
+	\draw[color=#1] \xebaposterBoxGetShape;%
 }%
 \newcommand{\xebaposter@box@drawborder@faded}[1]{%
-  % This is the right way to do it, but it does not work with evince, and has problems during printing, so instead we do
-  %\draw[color=#1,path fading=south] \xebaposterBoxGetShape;%
-  % this
-  \foreach \x in {0,1,...,90} \draw[color=#1!\x] ($(\xebaposter@box@name tnw)!{(100-\x)/100}!(\xebaposter@box@name sw)$) -- ($(\xebaposter@box@name tnw)!{(100-(\x+10))/100}!(\xebaposter@box@name sw)$);%
-  \foreach \x in {0,1,...,90} \draw[color=#1!\x] ($(\xebaposter@box@name tne)!{(100-\x)/100}!(\xebaposter@box@name se)$) -- ($(\xebaposter@box@name tne)!{(100-(\x+10))/100}!(\xebaposter@box@name se)$);%
+	% This is the right way to do it, but it does not work with evince, and has problems during printing, so instead we do
+	%\draw[color=#1,path fading=south] \xebaposterBoxGetShape;%
+	% this
+	\foreach \x in {0,1,...,90} \draw[color=#1!\x] ($(\xebaposter@box@name tnw)!{(100-\x)/100}!(\xebaposter@box@name sw)$) -- ($(\xebaposter@box@name tnw)!{(100-(\x+10))/100}!(\xebaposter@box@name sw)$);%
+	\foreach \x in {0,1,...,90} \draw[color=#1!\x] ($(\xebaposter@box@name tne)!{(100-\x)/100}!(\xebaposter@box@name se)$) -- ($(\xebaposter@box@name tne)!{(100-(\x+10))/100}!(\xebaposter@box@name se)$);%
 }%
 \newcommand{\xebaposter@box@drawborder@roundedsmall}[1]{%
-  \draw[color=#1] \xebaposterBoxGetShape;%
+	\draw[color=#1] \xebaposterBoxGetShape;%
 }%
 %
 %
@@ -610,24 +610,24 @@
 % These functions take no arguments
 % TODO: For headerborder==none, use (\xebaposter@box@name outer tnw) instead!
 \newcommand{\xebaposter@box@headershape@rectangle}{%
-  (\xebaposter@box@name tnw) -- (\xebaposter@box@name nw) -- %
-  (\xebaposter@box@name ne) -- (\xebaposter@box@name tne)%
+	(\xebaposter@box@name tnw) -- (\xebaposter@box@name nw) -- %
+	(\xebaposter@box@name ne) -- (\xebaposter@box@name tne)%
 }%
 \newcommand{\xebaposter@box@headershape@smallrounded}{%
-  (\xebaposter@box@name tnw) {[src] -- (\xebaposter@box@name nw) -- %
-  (\xebaposter@box@name ne)} -- (\xebaposter@box@name tne)%
+	(\xebaposter@box@name tnw) {[src] -- (\xebaposter@box@name nw) -- %
+			(\xebaposter@box@name ne)} -- (\xebaposter@box@name tne)%
 }%
 \newcommand{\xebaposter@box@headershape@roundedright}{%
-  (\xebaposter@box@name tnw) -- (\xebaposter@box@name nw) {[rc] -- %
-  (\xebaposter@box@name ne)} -- (\xebaposter@box@name tne)%
+	(\xebaposter@box@name tnw) -- (\xebaposter@box@name nw) {[rc] -- %
+			(\xebaposter@box@name ne)} -- (\xebaposter@box@name tne)%
 }%
 \newcommand{\xebaposter@box@headershape@roundedleft}{%
-  (\xebaposter@box@name tnw) {[rc]-- (\xebaposter@box@name nw)} -- %
-  (\xebaposter@box@name ne) -- (\xebaposter@box@name tne)%
+	(\xebaposter@box@name tnw) {[rc]-- (\xebaposter@box@name nw)} -- %
+	(\xebaposter@box@name ne) -- (\xebaposter@box@name tne)%
 }%
 \newcommand{\xebaposter@box@headershape@rounded}{%
-  (\xebaposter@box@name tnw) {[rc] -- (\xebaposter@box@name nw) -- %
-  (\xebaposter@box@name ne) } -- (\xebaposter@box@name tne)%
+	(\xebaposter@box@name tnw) {[rc] -- (\xebaposter@box@name nw) -- %
+			(\xebaposter@box@name ne) } -- (\xebaposter@box@name tne)%
 }%
 %
 %
@@ -638,35 +638,35 @@
 %
 % These functions take one argument: the header text
 \newcommand{\xebaposter@box@headerdrawtext@rectangle}[1]{%
-\if@xebaposter@persian
-  \path (\xebaposter@box@name ne) +(0em,-0.5\xebaposter@box@@boxheaderheight) node[anchor=east,inner sep=0.4em] {#1};%
-\else
-  \path (\xebaposter@box@name nw) +(0em,-0.5\xebaposter@box@@boxheaderheight) node[anchor=west,inner sep=0.4em] {#1};%
-\fi
+	\if@xebaposter@persian
+		\path (\xebaposter@box@name ne) +(0em,-0.5\xebaposter@box@@boxheaderheight) node[anchor=east,inner sep=0.4em] {#1};%
+	\else
+		\path (\xebaposter@box@name nw) +(0em,-0.5\xebaposter@box@@boxheaderheight) node[anchor=west,inner sep=0.4em] {#1};%
+	\fi
 }%
 \newcommand{\xebaposter@box@headerdrawtext@smallrounded}[1]{%
-  \path (\xebaposter@box@name nw) +(0.5\boxwidth,-0.5\xebaposter@box@@boxheaderheight) node[anchor=center] {#1};%
+	\path (\xebaposter@box@name nw) +(0.5\boxwidth,-0.5\xebaposter@box@@boxheaderheight) node[anchor=center] {#1};%
 }%
 \newcommand{\xebaposter@box@headerdrawtext@roundedright}[1]{%
-\if@xebaposter@persian
-  \path (\xebaposter@box@name ne) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
-        node[anchor=east,inner sep=0.4em,text depth=0.4em] {#1};%
-\else
-  \path (\xebaposter@box@name nw) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
-        node[anchor=west,inner sep=0.4em,text depth=0.4em] {#1};%
-\fi
+	\if@xebaposter@persian
+		\path (\xebaposter@box@name ne) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
+		node[anchor=east,inner sep=0.4em,text depth=0.4em] {#1};%
+	\else
+		\path (\xebaposter@box@name nw) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
+		node[anchor=west,inner sep=0.4em,text depth=0.4em] {#1};%
+	\fi
 }%
 \newcommand{\xebaposter@box@headerdrawtext@roundedleft}[1]{%
-\if@xebaposter@persian
-  \path (\xebaposter@box@name ne) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
-        node[anchor=east,inner sep=0.4em] {#1};%
-\else
-  \path (\xebaposter@box@name nw) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
-        node[anchor=west,inner sep=0.4em] {#1};%
-\fi
+	\if@xebaposter@persian
+		\path (\xebaposter@box@name ne) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
+		node[anchor=east,inner sep=0.4em] {#1};%
+	\else
+		\path (\xebaposter@box@name nw) +(0em,-0.5\xebaposter@box@@boxheaderheight)%
+		node[anchor=west,inner sep=0.4em] {#1};%
+	\fi
 }%
 \newcommand{\xebaposter@box@headerdrawtext@rounded}[1]{%
-    \path (\xebaposter@box@name nw) +(0.5\boxwidth,-0.5\xebaposter@box@@boxheaderheight) node[anchor=center] {#1};%
+	\path (\xebaposter@box@name nw) +(0.5\boxwidth,-0.5\xebaposter@box@@boxheaderheight) node[anchor=center] {#1};%
 }%
 %
 %
@@ -677,54 +677,54 @@
 %
 % These functions take two arguments: headerColorOne, headerColorTwo and borderColor
 \newcommand{\xebaposter@box@headershade@shadelr}[3]{%
-    \debug{Header-Shade: Shade Left - Right}%
-    \tikzstyle{header colors}=[%
-      color=#3,%
-      shading=axis,%
-      left color=#1,%
-      right color=#2%
-    ]%
+\debug{Header-Shade: Shade Left - Right}%
+\tikzstyle{header colors}=[%
+color=#3,%
+shading=axis,%
+left color=#1,%
+right color=#2%
+]%
 }%
 \newcommand{\xebaposter@box@headershade@shaderl}[3]{%
-    \debug{Header-Shade: Shade Right - Left}%
-    \tikzstyle{header colors}=[%
-      color=#3,%
-      shading=axis,%
-      left color=#2,%
-      right color=#1%
-    ]%
+\debug{Header-Shade: Shade Right - Left}%
+\tikzstyle{header colors}=[%
+color=#3,%
+shading=axis,%
+left color=#2,%
+right color=#1%
+]%
 }%
 \newcommand{\xebaposter@box@headershade@shadetb}[3]{%
-    \debug{Header-Shade: Shade Top - Bottom}%
-    \tikzstyle{header colors}=[%
-      color=#3,%
-      shading=axis,%
-      top color=#1,%
-      bottom color=#2%
-    ]%
+\debug{Header-Shade: Shade Top - Bottom}%
+\tikzstyle{header colors}=[%
+color=#3,%
+shading=axis,%
+top color=#1,%
+bottom color=#2%
+]%
 }%
 \newcommand{\xebaposter@box@headershade@shadetbinverse}[3]{%
-    \debug{Header-Shade: Shade Top - Bottom - Inverse }%
-    \tikzstyle{header colors}=[%
-      color=#3,%
+\debug{Header-Shade: Shade Top - Bottom - Inverse }%
+\tikzstyle{header colors}=[%
+color=#3,%
 %      top color=#1!75!#2,%
 %      bottom color=#2!100!#1,%
-      top color=#2,%
-      bottom color=#1,%
-      shading angle=20%
-    ]%
-    \colorlet{xebaposterHeaderFontColor}{white}%
+top color=#2,%
+bottom color=#1,%
+shading angle=20%
+]%
+\colorlet{xebaposterHeaderFontColor}{white}%
 }%
 \newcommand{\xebaposter@box@headershade@plain}[3]{%
-    \debug{Header-Shade: Plain}%
-    \tikzstyle{header colors}=[%
-      color=#3,%
-      fill=#1%
-    ]%
+\debug{Header-Shade: Plain}%
+\tikzstyle{header colors}=[%
+color=#3,%
+fill=#1%
+]%
 }%
 \newcommand{\xebaposter@box@headershade@none}[3]{%
-    \debug{Header-Shade: none}%
-    \tikzstyle{header colors}=[]%
+\debug{Header-Shade: none}%
+\tikzstyle{header colors}=[]%
 }%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% The main poster environment
@@ -744,377 +744,377 @@
 %%%                       Shape of the box-header region
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newenvironment{poster}[5]{% BEGIN poster begin
-  \thispagestyle{empty}% Suppress Page Number
-  \debug{Poster Starts}%
-  % This setkeys call parses all provided options and depending on the option
-  % value, assigns different handler functions to the \xebaposter(Box|Header)*
-  % functions. Once that is done, we don't have to care about particular
-  % values for border, shading, etc. All we have to do is call the
-  % handler functions and let them do their job.
-  % This also allows the user to override the poster-wide defaults on a per-box
-  % basis.
-  \setkeys[ba]{posterbox,poster}{#1}%
+\thispagestyle{empty}% Suppress Page Number
+\debug{Poster Starts}%
+% This setkeys call parses all provided options and depending on the option
+% value, assigns different handler functions to the \xebaposter(Box|Header)*
+% functions. Once that is done, we don't have to care about particular
+% values for border, shading, etc. All we have to do is call the
+% handler functions and let them do their job.
+% This also allows the user to override the poster-wide defaults on a per-box
+% basis.
+\setkeys[ba]{posterbox,poster}{#1}%
 %
-  % TODO: Move all those assignments to the key macros!
-  % Parse Keys%
-  \colorlet{bgColorOne}{\xebaposter@bgColorOne}%
-  \colorlet{bgColorTwo}{\xebaposter@bgColorTwo}%
+% TODO: Move all those assignments to the key macros!
+% Parse Keys%
+\colorlet{bgColorOne}{\xebaposter@bgColorOne}%
+\colorlet{bgColorTwo}{\xebaposter@bgColorTwo}%
 %
-  %% Boxes%
-  \setlength{\headerheight}{\xebaposter@headerheight}%
-  \setlength{\colheight}{\textheight-\xebaposter@headerheight}%
-  \renewcommand{\@@previousbox}{notset}%
+%% Boxes%
+\setlength{\headerheight}{\xebaposter@headerheight}%
+\setlength{\colheight}{\textheight-\xebaposter@headerheight}%
+\renewcommand{\@@previousbox}{notset}%
 %
-  \debug{Format}%
-  % Set default for columns if unset (4 for landscape, 3 for portrait)
-  \ifthenelse{\equal{\xebaposter@columns}{}}{%
-    \renewcommand{\xebaposter@columns}{\if@landscape4\else3\fi}%
-  }{}%
+\debug{Format}%
+% Set default for columns if unset (4 for landscape, 3 for portrait)
+\ifthenelse{\equal{\xebaposter@columns}{}}{%
+	\renewcommand{\xebaposter@columns}{\if@landscape4\else3\fi}%
+}{}%
 %
-  \debug{Columns: \xebaposter@columns}%
-  \setlength{\xebaposter@@colspacing}{\xebaposter@colspacing}%
-  \setlength{\colwidth}{\textwidth}%
-  \addtolength{\colwidth}{\xebaposter@@colspacing*(1-\xebaposter@columns)}%
-  \ifcase\xebaposter@columns\relax%
-    \error{You need to have at least one column!}%
-  \or % 1
-    \setlength{\colwidth}{\colwidth}%
-  \or % 2
-    \setlength{\colwidth}{0.5\colwidth}%
-  \or % 3
-    \setlength{\colwidth}{0.3333333333333\colwidth}%
-  \or % 4
-    \setlength{\colwidth}{0.25\colwidth}%
-  \or % 5
-    \setlength{\colwidth}{0.2\colwidth}%
-  \or % 6
-    \setlength{\colwidth}{0.16666666666\colwidth}%
-  \else % >6
-    \error{You do not want so many columns}%
-  \fi%
+\debug{Columns: \xebaposter@columns}%
+\setlength{\xebaposter@@colspacing}{\xebaposter@colspacing}%
+\setlength{\colwidth}{\textwidth}%
+\addtolength{\colwidth}{\xebaposter@@colspacing*(1-\xebaposter@columns)}%
+\ifcase\xebaposter@columns\relax%
+	\error{You need to have at least one column!}%
+\or % 1
+	\setlength{\colwidth}{\colwidth}%
+\or % 2
+	\setlength{\colwidth}{0.5\colwidth}%
+\or % 3
+	\setlength{\colwidth}{0.3333333333333\colwidth}%
+\or % 4
+	\setlength{\colwidth}{0.25\colwidth}%
+\or % 5
+	\setlength{\colwidth}{0.2\colwidth}%
+\or % 6
+	\setlength{\colwidth}{0.16666666666\colwidth}%
+\else % >6
+	\error{You do not want so many columns}%
+\fi%
 %
-  \newcommand{\xebaposter@reference}{north west}%
+\newcommand{\xebaposter@reference}{north west}%
 %
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  % A box with a header and some content. The basic unit of the poster%
-  %---------------------------------------------------------------------------%
-  % Each box has a name and can be placed absolutely or relatively.%
-  % The only inconvenience is that you can only specify a relative position %
-  % towards an already declared box. So if you have a box attached to the %
-  % bottom, one to the top and a third one which should be inbetween, you %
-  % have to specify the top and bottom boxes before you specify the middle %
-  % box.%
-  %%
-  % below=  name of other node%
-  % above=  name of other node%
-  % aligned=name of other node%
-  % bottomaligned=name of other node%
-  % column= [0]     %
-  % row=    [0]     %
-  % span=   [1]     %
-  % height= <size in percent of column height>,[auto]%
-  % name=   [noname]%
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A box with a header and some content. The basic unit of the poster%
+%---------------------------------------------------------------------------%
+% Each box has a name and can be placed absolutely or relatively.%
+% The only inconvenience is that you can only specify a relative position %
+% towards an already declared box. So if you have a box attached to the %
+% bottom, one to the top and a third one which should be inbetween, you %
+% have to specify the top and bottom boxes before you specify the middle %
+% box.%
+%%
+% below=  name of other node%
+% above=  name of other node%
+% aligned=name of other node%
+% bottomaligned=name of other node%
+% column= [0]     %
+% row=    [0]     %
+% span=   [1]     %
+% height= <size in percent of column height>,[auto]%
+% name=   [noname]%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-  % Backward-compatibility definition (\headerbox command uses posterbox env):
-  \newcommand{\headerbox}[3]{%
-    \begin{posterbox}[##2]{##1}%
-      ##3%
-    \end{posterbox}%
-  }%
+% Backward-compatibility definition (\headerbox command uses posterbox env):
+\newcommand{\headerbox}[3]{%
+	\begin{posterbox}[##2]{##1}%
+		##3%
+	\end{posterbox}%
+}%
 %
-  \newenvironment{posterbox}[2][]{%
-    \debug{Poster box options: ##1}%
-    % Override the poster-wide defaults on a per-box basis
-    \setkeys[ba]{posterbox}{##1}%
+\newenvironment{posterbox}[2][]{%
+\debug{Poster box options: ##1}%
+% Override the poster-wide defaults on a per-box basis
+\setkeys[ba]{posterbox}{##1}%
 %
 \if@xebaposter@persian
-    \def\xebaposter@box@title{\rl{##2}}%
+	\def\xebaposter@box@title{\rl{##2}}%
 \else
-    \def\xebaposter@box@title{{##2}}%
+	\def\xebaposter@box@title{{##2}}%
 \fi
 %
-    \colorlet{borderColor}{\xebaposter@box@borderColor}%
-    \colorlet{headerColorOne}{\xebaposter@box@headerColorOne}%
-    \colorlet{headerColorTwo}{\xebaposter@box@headerColorTwo}%
-    \colorlet{headerFontColor}{\xebaposter@box@headerFontColor}%
-    \colorlet{boxColorOne}{\xebaposter@box@boxColorOne}%
-    \colorlet{boxColorTwo}{\xebaposter@box@boxColorTwo}%
+\colorlet{borderColor}{\xebaposter@box@borderColor}%
+\colorlet{headerColorOne}{\xebaposter@box@headerColorOne}%
+\colorlet{headerColorTwo}{\xebaposter@box@headerColorTwo}%
+\colorlet{headerFontColor}{\xebaposter@box@headerFontColor}%
+\colorlet{boxColorOne}{\xebaposter@box@boxColorOne}%
+\colorlet{boxColorTwo}{\xebaposter@box@boxColorTwo}%
 %
-    \setlength{\xebaposter@box@@cornerradius}{\xebaposter@box@cornerradius}%
-    \setlength{\xebaposter@box@@boxheaderheight}{\xebaposter@box@boxheaderheight}%
-    \setlength{\xebaposter@box@@boxpadding}{\xebaposter@box@boxpadding}%
+\setlength{\xebaposter@box@@cornerradius}{\xebaposter@box@cornerradius}%
+\setlength{\xebaposter@box@@boxheaderheight}{\xebaposter@box@boxheaderheight}%
+\setlength{\xebaposter@box@@boxpadding}{\xebaposter@box@boxpadding}%
 %
 %
-    %% The columns is always given absolute
+%% The columns is always given absolute
 \if@xebaposter@persian
-    % boxstartx = (columns-column-span) * colwidth + (columns-column-span) * colspacing
-%    \setlength{\boxstartx}{(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\colwidth+(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\xebaposter@@colspacing}%
-   \setlength{\boxstartx}{\xebaposter@columns\colwidth}%
-    \addtolength{\boxstartx}{-\xebaposter@box@column\colwidth}%
-    \addtolength{\boxstartx}{-\xebaposter@box@span\colwidth}%
-    \addtolength{\boxstartx}{\xebaposter@columns\xebaposter@@colspacing}%
-    \addtolength{\boxstartx}{-\xebaposter@box@column\xebaposter@@colspacing}%
-    \addtolength{\boxstartx}{-\xebaposter@box@span\xebaposter@@colspacing}%
+	% boxstartx = (columns-column-span) * colwidth + (columns-column-span) * colspacing
+	%    \setlength{\boxstartx}{(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\colwidth+(\xebaposter@columns+-\xebaposter@box@column+-\xebaposter@box@span)*\xebaposter@@colspacing}%
+	\setlength{\boxstartx}{\xebaposter@columns\colwidth}%
+	\addtolength{\boxstartx}{-\xebaposter@box@column\colwidth}%
+	\addtolength{\boxstartx}{-\xebaposter@box@span\colwidth}%
+	\addtolength{\boxstartx}{\xebaposter@columns\xebaposter@@colspacing}%
+	\addtolength{\boxstartx}{-\xebaposter@box@column\xebaposter@@colspacing}%
+	\addtolength{\boxstartx}{-\xebaposter@box@span\xebaposter@@colspacing}%
 \else
-    % boxstartx = column * colwidth + column * colspacing
-    \setlength{\boxstartx}{(\colwidth+\xebaposter@@colspacing)*\xebaposter@box@column}%
+	% boxstartx = column * colwidth + column * colspacing
+	\setlength{\boxstartx}{(\colwidth+\xebaposter@@colspacing)*\xebaposter@box@column}%
 \fi
 %
-    %% The width is gvien absolute
-    % Box Width = span * colwidth + (span-1) * colspacing
-    \setlength{\boxwidth}{\xebaposter@box@span\colwidth}%
-    \addtolength{\boxwidth}{\xebaposter@@colspacing*(\xebaposter@box@span-1)}%
+%% The width is gvien absolute
+% Box Width = span * colwidth + (span-1) * colspacing
+\setlength{\boxwidth}{\xebaposter@box@span\colwidth}%
+\addtolength{\boxwidth}{\xebaposter@@colspacing*(\xebaposter@box@span-1)}%
 %
-    %% Measure the content of the box%
-    \setbox\xebaposter@box@content=\hbox\bgroup%
-      \begin{pgfinterruptpicture}%
-        \begin{minipage}[t]{\boxwidth-\xebaposter@box@@boxpadding*2}%
-\if@xebaposter@persian%
-        \persian%
-\fi
-          \xebaposter@box@textfont\bgroup%
-  }% End of posterbox preamble
-  %%% HERE COME THE ACTUAL CONTENTS OF THE POSTERBOX ENVIRONMENT
-  {% posterbox handling after contents (i.e. drawing everything)
-          \egroup%
-        \end{minipage}%
-      \end{pgfinterruptpicture}%
-    \egroup%
-    \setlength{\boxheight}{\ht\xebaposter@box@content}%
-    \addtolength{\boxheight}{\dp\xebaposter@box@content}%
-    \addtolength{\boxheight}{\xebaposter@box@@boxheaderheight}% Header%
-    \addtolength{\boxheight}{2\xebaposter@box@@boxpadding}% Inner Sep
+%% Measure the content of the box%
+\setbox\xebaposter@box@content=\hbox\bgroup%
+\begin{pgfinterruptpicture}%
+	\begin{minipage}[t]{\boxwidth-\xebaposter@box@@boxpadding*2}%
+		\if@xebaposter@persian%
+			\persian%
+		\fi
+		\xebaposter@box@textfont\bgroup%
+		}% End of posterbox preamble
+		%%% HERE COME THE ACTUAL CONTENTS OF THE POSTERBOX ENVIRONMENT
+		{% posterbox handling after contents (i.e. drawing everything)
+		\egroup%
+	\end{minipage}%
+\end{pgfinterruptpicture}%
+\egroup%
+\setlength{\boxheight}{\ht\xebaposter@box@content}%
+\addtolength{\boxheight}{\dp\xebaposter@box@content}%
+\addtolength{\boxheight}{\xebaposter@box@@boxheaderheight}% Header%
+\addtolength{\boxheight}{2\xebaposter@box@@boxpadding}% Inner Sep
 %
-    \ifthenelse{\equal{\xebaposter@box@height}{bottom}}{%
-    }{\ifthenelse{\equal{\xebaposter@box@height}{auto}}{%
-    }{ % Neither auto nor bottom%
-      \setlength{\boxheight}{\xebaposter@box@height\colheight}%
-    }}%
+\ifthenelse{\equal{\xebaposter@box@height}{bottom}}{%
+}{\ifthenelse{\equal{\xebaposter@box@height}{auto}}{%
+	}{ % Neither auto nor bottom%
+		\setlength{\boxheight}{\xebaposter@box@height\colheight}%
+	}}%
 %
-    %% Determine the box position%
-    \debug{Setting Coordinates}%
-    \debug{Upper Right}%
-    \debug{\xebaposter@box@name}%
+%% Determine the box position%
+\debug{Setting Coordinates}%
+\debug{Upper Right}%
+\debug{\xebaposter@box@name}%
 %
-    %%% Upper Right Corner%
-    % if below=auto, set it to the previous box
-    % TODO: We should generalize this to the previous box of the used column,
-    %       currently we use the previous box, which might be in a different column
-    \ifthenelse{\equal{\xebaposter@box@below}{auto}}{%
-        \edef\xebaposter@box@below{\@@previousbox}%
-        \debug{Box \xebaposter@box@name  has below=auto, placing it below box \xebaposter@box@below.}%
-    }{}%
-    \xdef\@@previousbox{\xebaposter@box@name}%
+%%% Upper Right Corner%
+% if below=auto, set it to the previous box
+% TODO: We should generalize this to the previous box of the used column,
+%       currently we use the previous box, which might be in a different column
+\ifthenelse{\equal{\xebaposter@box@below}{auto}}{%
+	\edef\xebaposter@box@below{\@@previousbox}%
+	\debug{Box \xebaposter@box@name  has below=auto, placing it below box \xebaposter@box@below.}%
+}{}%
+\xdef\@@previousbox{\xebaposter@box@name}%
 %
-    \ifthenelse{\not\equal{\xebaposter@box@below}{notset}}{%
-      %% Below%
-      \debug{Below}%
-      \path[shape=coordinate] (\boxstartx,0pt |- \xebaposter@box@below se) ++(0pt,-\xebaposter@@colspacing) coordinate(\xebaposter@box@name nw);%
-    }{%
-      \ifthenelse{\not\equal{\xebaposter@box@aligned}{notset}}{%
-        %% Aligned%
-        \debug{Aligned: \xebaposter@box@aligned}%
-        \path[shape=coordinate] (\boxstartx,0pt |- \xebaposter@box@aligned nw) coordinate(\xebaposter@box@name nw);%
-      }{%
-        %% Fixed%
-        \debug{Fixed}%
-        \setlength{\boxstarty}{\xebaposter@box@row\colheight}%
-        \path[shape=coordinate] (\boxstartx,\colheight-\boxstarty) coordinate (\xebaposter@box@name nw);%
-    }}%
+\ifthenelse{\not\equal{\xebaposter@box@below}{notset}}{%
+	%% Below%
+	\debug{Below}%
+	\path[shape=coordinate] (\boxstartx,0pt |- \xebaposter@box@below se) ++(0pt,-\xebaposter@@colspacing) coordinate(\xebaposter@box@name nw);%
+}{%
+	\ifthenelse{\not\equal{\xebaposter@box@aligned}{notset}}{%
+		%% Aligned%
+		\debug{Aligned: \xebaposter@box@aligned}%
+		\path[shape=coordinate] (\boxstartx,0pt |- \xebaposter@box@aligned nw) coordinate(\xebaposter@box@name nw);%
+	}{%
+		%% Fixed%
+		\debug{Fixed}%
+		\setlength{\boxstarty}{\xebaposter@box@row\colheight}%
+		\path[shape=coordinate] (\boxstartx,\colheight-\boxstarty) coordinate (\xebaposter@box@name nw);%
+	}}%
 %
-    %% Lower Left Corner%
-    \debug{Lower Left}%
-    \ifthenelse{\equal{\xebaposter@box@above}{bottom}}{%
-      %% Above = Bottom%
-      \debug{Above bottom}%
-      \ifthenelse{\equal{\xebaposter@box@below}{notset} \and \equal{\xebaposter@box@aligned}{notset}}{%
-      \path[shape=coordinate] (\boxstartx,\boxheight) coordinate (\xebaposter@box@name nw);%
-      }{}%
-      \path[shape=coordinate] (\boxstartx+\boxwidth,0pt) coordinate (\xebaposter@box@name se);%
-      }{\ifthenelse{\not \equal{\xebaposter@box@bottomaligned}{notset}}{%
-        \path[shape=coordinate] (\boxstartx+\boxwidth,0pt |- \xebaposter@box@bottomaligned se) coordinate (\xebaposter@box@name se);%
-      }{{\ifthenelse{\not \equal{\xebaposter@box@above}{notset}}{%
-        %% Above = Node%
-        \path[shape=coordinate] (\boxstartx+\boxwidth,0pt |- \xebaposter@box@above nw)  +(0pt,\xebaposter@@colspacing) coordinate(\xebaposter@box@name se);%
-      }{%
-        %% Above = notset%
-        \debug{Above=not set}%
-        \ifthenelse{\equal{\xebaposter@box@height}{bottom}}{%
-          %% height=bottom%
-          \debug{height=bottom}%
-          \path[shape=coordinate] (\boxstartx+\boxwidth,0pt) coordinate(\xebaposter@box@name se);%
-        }{ %% height=auto or fixed%
-          \debug{height=auto or fixed}%
-          \path[shape=coordinate] (\xebaposter@box@name nw) ++(\boxwidth,-\boxheight) coordinate (\xebaposter@box@name se);%
-	  }}}}}%
+%% Lower Left Corner%
+\debug{Lower Left}%
+\ifthenelse{\equal{\xebaposter@box@above}{bottom}}{%
+	%% Above = Bottom%
+	\debug{Above bottom}%
+	\ifthenelse{\equal{\xebaposter@box@below}{notset} \and \equal{\xebaposter@box@aligned}{notset}}{%
+		\path[shape=coordinate] (\boxstartx,\boxheight) coordinate (\xebaposter@box@name nw);%
+	}{}%
+	\path[shape=coordinate] (\boxstartx+\boxwidth,0pt) coordinate (\xebaposter@box@name se);%
+}{\ifthenelse{\not \equal{\xebaposter@box@bottomaligned}{notset}}{%
+		\path[shape=coordinate] (\boxstartx+\boxwidth,0pt |- \xebaposter@box@bottomaligned se) coordinate (\xebaposter@box@name se);%
+	}{{\ifthenelse{\not \equal{\xebaposter@box@above}{notset}}{%
+					%% Above = Node%
+					\path[shape=coordinate] (\boxstartx+\boxwidth,0pt |- \xebaposter@box@above nw)  +(0pt,\xebaposter@@colspacing) coordinate(\xebaposter@box@name se);%
+				}{%
+					%% Above = notset%
+					\debug{Above=not set}%
+					\ifthenelse{\equal{\xebaposter@box@height}{bottom}}{%
+						%% height=bottom%
+						\debug{height=bottom}%
+						\path[shape=coordinate] (\boxstartx+\boxwidth,0pt) coordinate(\xebaposter@box@name se);%
+					}{ %% height=auto or fixed%
+						\debug{height=auto or fixed}%
+						\path[shape=coordinate] (\xebaposter@box@name nw) ++(\boxwidth,-\boxheight) coordinate (\xebaposter@box@name se);%
+					}}}}}%
 %
-        %
-    % Set coordinates relative to nw,se%
-    \debug{Fixing Coordinates}%
-    \path[shape=coordinate]%
-      (\xebaposter@box@name nw) +(0pt,-\xebaposter@box@@boxheaderheight) coordinate(\xebaposter@box@name tnw)%
-      (\xebaposter@box@name nw |- \xebaposter@box@name se) coordinate(\xebaposter@box@name sw)%
-      (\xebaposter@box@name se |- \xebaposter@box@name nw) coordinate(\xebaposter@box@name ne)%
-      (\xebaposter@box@name ne) +(0pt,-\xebaposter@box@@boxheaderheight) coordinate(\xebaposter@box@name tne)%
 %
-      (\xebaposter@box@name nw)  +(-0.025em,0pt) coordinate(\xebaposter@box@name outer nw)%
-      (\xebaposter@box@name tnw) +(-0.025em,0pt) coordinate(\xebaposter@box@name outer tnw)%
-      (\xebaposter@box@name sw)  +(-0.025em,0pt) coordinate(\xebaposter@box@name outer sw)%
+% Set coordinates relative to nw,se%
+\debug{Fixing Coordinates}%
+\path[shape=coordinate]%
+(\xebaposter@box@name nw) +(0pt,-\xebaposter@box@@boxheaderheight) coordinate(\xebaposter@box@name tnw)%
+(\xebaposter@box@name nw |- \xebaposter@box@name se) coordinate(\xebaposter@box@name sw)%
+(\xebaposter@box@name se |- \xebaposter@box@name nw) coordinate(\xebaposter@box@name ne)%
+(\xebaposter@box@name ne) +(0pt,-\xebaposter@box@@boxheaderheight) coordinate(\xebaposter@box@name tne)%
 %
-      (\xebaposter@box@name ne)  +( 0.025em,0pt) coordinate(\xebaposter@box@name outer ne)%
-      (\xebaposter@box@name tne) +( 0.025em,0pt) coordinate(\xebaposter@box@name outer tne)%
-      (\xebaposter@box@name se)  +( 0.025em,0pt) coordinate(\xebaposter@box@name outer se);%
+(\xebaposter@box@name nw)  +(-0.025em,0pt) coordinate(\xebaposter@box@name outer nw)%
+(\xebaposter@box@name tnw) +(-0.025em,0pt) coordinate(\xebaposter@box@name outer tnw)%
+(\xebaposter@box@name sw)  +(-0.025em,0pt) coordinate(\xebaposter@box@name outer sw)%
 %
-      %% Setting the bg colors of the box header
-      \xebaposterHeaderSetShade{headerColorOne}{headerColorTwo}{borderColor}%
+(\xebaposter@box@name ne)  +( 0.025em,0pt) coordinate(\xebaposter@box@name outer ne)%
+(\xebaposter@box@name tne) +( 0.025em,0pt) coordinate(\xebaposter@box@name outer tne)%
+(\xebaposter@box@name se)  +( 0.025em,0pt) coordinate(\xebaposter@box@name outer se);%
 %
-      \tikzstyle{rc}=[rounded corners=\xebaposter@box@@cornerradius]%
-      \tikzstyle{src}=[rounded corners=0.5em]%
+%% Setting the bg colors of the box header
+\xebaposterHeaderSetShade{headerColorOne}{headerColorTwo}{borderColor}%
 %
-    %% Now that everything is set up, draw the actual box, with bg and header
-    \begin{scope}[line width=\xebaposter@box@linewidth]%
-      %% Header%
-      \debug{Header}%
-      \debug{Header-Shape: \xebaposter@box@headershape, header-border: \xebaposter@box@headerborder (\xebaposter@box@headerbordernr)}%
-      % TODO: Also turn this last ifcase construct into a handler function
-      %       We only need to determine (fill|shade)(draw|)...
-      \xebaposterHeaderDrawBackground{bgColorOne}{bgColorTwo}{borderColor}%
-      \xebaposterHeaderDrawBorder{}%{borderColor}%
-      \ifcase\xebaposter@box@headerbordernr\relax%
-        % open
-        \ifthenelse{\equal{\xebaposter@box@headershade}{plain}}{%
-          \filldraw  [style=header colors] \xebaposterHeaderGetShape;%
-        }{%
-          \shadedraw [style=header colors] \xebaposterHeaderGetShape;%
-        }%
-      \or%
-        % closed
-        \ifthenelse{\equal{\xebaposter@box@headershade}{plain}}{%
-          \filldraw  [style=header colors] \xebaposterHeaderGetShape -- cycle;%
-        }{%
-          \shadedraw [style=header colors] \xebaposterHeaderGetShape -- cycle;%
-        }%
-      \or%
-        % none
-        \ifthenelse{\equal{\xebaposter@box@headershade}{plain}}{%
-          \fill      [style=header colors] \xebaposterHeaderGetShape;%
-        }{%
-          \shade     [style=header colors] \xebaposterHeaderGetShape;%
-        }%
-      \fi%
-      %
-      %% Draw the text inside the box header:
-    %%% %%% %%% %%% %%% buggy part because of color!! %%% %%% %%% %%% %%% %%%
-      \xebaposterHeaderDrawText{\hbox{{\color{headerFontColor}\xebaposter@box@headerfont%
-      {\xebaposter@box@title}}}}%
-      %
-      %% Text borders (border around boxes)
-      \debug{Poster boxes}%
-      % First set box shade
-      \xebaposterBoxDrawBackground{boxColorOne}{boxColorTwo}%
-      \xebaposterBoxDrawBorder{borderColor}%
-      %%
-      %% Text Box%
-      \debug{Drawing Text}%
-      \path (\xebaposter@box@name tnw) node(text) [anchor=north west,%
-            outer sep=-0.000em,text width=\boxwidth-2\xebaposter@box@@boxpadding,inner sep=\xebaposter@box@@boxpadding,%
-            text justified] {{\usebox{\xebaposter@box@content}}};%
-    \end{scope}%
-    %
-    % Finally store the box name as the previous box for the next call
+\tikzstyle{rc}=[rounded corners=\xebaposter@box@@cornerradius]%
+\tikzstyle{src}=[rounded corners=0.5em]%
+%
+%% Now that everything is set up, draw the actual box, with bg and header
+\begin{scope}[line width=\xebaposter@box@linewidth]%
+	%% Header%
+	\debug{Header}%
+	\debug{Header-Shape: \xebaposter@box@headershape, header-border: \xebaposter@box@headerborder (\xebaposter@box@headerbordernr)}%
+	% TODO: Also turn this last ifcase construct into a handler function
+	%       We only need to determine (fill|shade)(draw|)...
+	\xebaposterHeaderDrawBackground{bgColorOne}{bgColorTwo}{borderColor}%
+	\xebaposterHeaderDrawBorder{}%{borderColor}%
+	\ifcase\xebaposter@box@headerbordernr\relax%
+		% open
+		\ifthenelse{\equal{\xebaposter@box@headershade}{plain}}{%
+			\filldraw  [style=header colors] \xebaposterHeaderGetShape;%
+		}{%
+			\shadedraw [style=header colors] \xebaposterHeaderGetShape;%
+		}%
+	\or%
+		% closed
+		\ifthenelse{\equal{\xebaposter@box@headershade}{plain}}{%
+			\filldraw  [style=header colors] \xebaposterHeaderGetShape -- cycle;%
+		}{%
+			\shadedraw [style=header colors] \xebaposterHeaderGetShape -- cycle;%
+		}%
+	\or%
+		% none
+		\ifthenelse{\equal{\xebaposter@box@headershade}{plain}}{%
+			\fill      [style=header colors] \xebaposterHeaderGetShape;%
+		}{%
+			\shade     [style=header colors] \xebaposterHeaderGetShape;%
+		}%
+	\fi%
+	%
+	%% Draw the text inside the box header:
+	%%% %%% %%% %%% %%% buggy part because of color!! %%% %%% %%% %%% %%% %%%
+	\xebaposterHeaderDrawText{\hbox{{\color{headerFontColor}\xebaposter@box@headerfont%
+					{\xebaposter@box@title}}}}%
+	%
+	%% Text borders (border around boxes)
+	\debug{Poster boxes}%
+	% First set box shade
+	\xebaposterBoxDrawBackground{boxColorOne}{boxColorTwo}%
+	\xebaposterBoxDrawBorder{borderColor}%
+	%%
+	%% Text Box%
+	\debug{Drawing Text}%
+	\path (\xebaposter@box@name tnw) node(text) [anchor=north west,%
+		outer sep=-0.000em,text width=\boxwidth-2\xebaposter@box@@boxpadding,inner sep=\xebaposter@box@@boxpadding,%
+		text justified] {{\usebox{\xebaposter@box@content}}};%
+\end{scope}%
+%
+% Finally store the box name as the previous box for the next call
 %     \xdef\@@previousbox{\xebaposter@box@name}%
-  }% END of posterbox definition
+}% END of posterbox definition
 %
-  %% Poster Background%
-  \xebaposterPosterDrawBackground{bgColorOne}{bgColorTwo}%
-  %% Poster header/title
-  \hspace{-1.5em}%
-  \begin{tikzpicture}[inner sep=0pt,outer sep=0pt,line width=0.05em,align=right]%
-    \useasboundingbox (0em,0em) rectangle(\textwidth,\textheight);%
-    \path[shape=coordinate]%
-      (0pt,\colheight) coordinate(north west) (\textwidth,\colheight) coordinate(north east)%
-      (0pt,0pt) coordinate(south west) (\textwidth,0pt) coordinate(south east);%
-%
-    \ifxebaposter@eyecatcher% Has eye catcher
-      \debug{Eyecatcher found!}%
-      \setbox\xebaposter@titleimage@left=\hbox{#2}%
-    \else% Has no eye catcher%
-      \setbox\xebaposter@titleimage@left=\hbox{}%
-    \fi%
-    \setlength{\xebaposter@titleimage@left@width}{\wd\xebaposter@titleimage@left}%
-    \setbox\xebaposter@titleimage@right=\hbox{#5}%
-    \setlength{\xebaposter@titleimage@right@width}{\wd\xebaposter@titleimage@right}%
-    \setlength{\xebaposter@titleimage@textwidth}{\textwidth}%
-    \addtolength{\xebaposter@titleimage@textwidth}{-\xebaposter@titleimage@left@width}%
-    \addtolength{\xebaposter@titleimage@textwidth}{-\xebaposter@titleimage@right@width}%
-%
-    \debug{#3}%
-    %
-    %
-    %      % Draw Header%
-    \draw (north west) +(0em,1em+0.5\headerheight) node(image)[anchor=west]  {{\usebox{%
-\if@xebaposter@persian%
-    \xebaposter@titleimage@right%
-\else%
-    \xebaposter@titleimage@left%
-\fi}}};%
-    \draw (north east) +(0em,1em+0.5\headerheight) node(logo) [anchor=east]   {{\usebox{%
-\if@xebaposter@persian%
-    \xebaposter@titleimage@left%
-\else%
-    \xebaposter@titleimage@right%
-\fi}}};%
-    %
-    \ifxebaposter@eyecatcher% Has eye catcher%
-      \draw (image.east) node(title)[anchor=west,text width=\xebaposter@titleimage@textwidth]{%
-        \begin{minipage}{\xebaposter@titleimage@textwidth}%
-          \begin{center}%
-\if@xebaposter@persian%
-          \textbf{\Huge\rl{#3}}\\%
-          {\Large\rl{#4}}%
-\else%
-          \textbf{\Huge #3}\\%
-          {\Large #4}%
-\fi%
-          \end{center}%
-        \end{minipage}%
-      };%
-    \else% Has no eye catcher
-      \draw (image.east) node(title)[anchor=west]  {{\begin{minipage}{\xebaposter@titleimage@textwidth}
-\if@xebaposter@persian%
-      \persian{\bfseries\Huge\rl{#3}}\\{\Large\rl{#4}}%
-\else%
-      {\bfseries\Huge #3}\\{\Large #4}%
-\fi%
-      \end{minipage}}};%
-    \fi%
-  }% END poster begin
-% The body
-  {% BEGIN poster end
-    % The end, draw gridlines if neccesary
-    \ifxebaposter@grid%
-      \newdimen{\gridpos}%
-      \pgfmathsetmacro{\z}{\xebaposter@columns-1}%
-      \foreach \y in {0,...,\z}%
-      {%
-        \setlength{\gridpos}{\y\colwidth+\y\xebaposter@@colspacing}%
-        \draw[draw=green,draw opacity=0.7] (\gridpos,0pt)  -- (\gridpos,\colheight)%
-            (\gridpos+\colwidth,0pt)  -- (\gridpos+\colwidth,\colheight);%
-      }%
-      % Horizontal lines, every 0.1:
-      %% Explicitly list all percentages, because with {0.0, 0.1, ..., 1.0} we
-      %% get rounding errors in the displayed numbers!
-      \foreach \y in {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0}%
-        {\if@xebaposter@persian%
-            \draw[draw=green,draw opacity=0.7]  (\textwidth,\colheight-\y\colheight) --%
-                (0pt,\colheight-\y\colheight) node[anchor=east] {\y};%
-        \else%
-            \draw[draw=green,draw opacity=0.7] (0pt,\colheight-\y\colheight)  --%
-                (\textwidth,\colheight-\y\colheight) node[anchor=west] {\y};%
-        \fi|}%
-    \fi%
-  \end{tikzpicture}%
+%% Poster Background%
+\xebaposterPosterDrawBackground{bgColorOne}{bgColorTwo}%
+%% Poster header/title
+\hspace{-1.5em}%
+\begin{tikzpicture}[inner sep=0pt,outer sep=0pt,line width=0.05em,align=right]%
+	\useasboundingbox (0em,0em) rectangle(\textwidth,\textheight);%
+	\path[shape=coordinate]%
+	(0pt,\colheight) coordinate(north west) (\textwidth,\colheight) coordinate(north east)%
+	(0pt,0pt) coordinate(south west) (\textwidth,0pt) coordinate(south east);%
+	%
+	\ifxebaposter@eyecatcher% Has eye catcher
+		\debug{Eyecatcher found!}%
+		\setbox\xebaposter@titleimage@left=\hbox{#2}%
+	\else% Has no eye catcher%
+		\setbox\xebaposter@titleimage@left=\hbox{}%
+	\fi%
+	\setlength{\xebaposter@titleimage@left@width}{\wd\xebaposter@titleimage@left}%
+	\setbox\xebaposter@titleimage@right=\hbox{#5}%
+	\setlength{\xebaposter@titleimage@right@width}{\wd\xebaposter@titleimage@right}%
+	\setlength{\xebaposter@titleimage@textwidth}{\textwidth}%
+	\addtolength{\xebaposter@titleimage@textwidth}{-\xebaposter@titleimage@left@width}%
+	\addtolength{\xebaposter@titleimage@textwidth}{-\xebaposter@titleimage@right@width}%
+	%
+	\debug{#3}%
+	%
+	%
+	%      % Draw Header%
+	\draw (north west) +(0em,1em+0.5\headerheight) node(image)[anchor=west]  {{\usebox{%
+						\if@xebaposter@persian%
+							\xebaposter@titleimage@right%
+						\else%
+							\xebaposter@titleimage@left%
+						\fi}}};%
+	\draw (north east) +(0em,1em+0.5\headerheight) node(logo) [anchor=east]   {{\usebox{%
+						\if@xebaposter@persian%
+							\xebaposter@titleimage@left%
+						\else%
+							\xebaposter@titleimage@right%
+						\fi}}};%
+	%
+	\ifxebaposter@eyecatcher% Has eye catcher%
+		\draw (image.east) node(title)[anchor=west,text width=\xebaposter@titleimage@textwidth]{%
+			\begin{minipage}{\xebaposter@titleimage@textwidth}%
+				\begin{center}%
+					\if@xebaposter@persian%
+						\textbf{\Huge\rl{#3}}\\%
+						{\Large\rl{#4}}%
+					\else%
+						\textbf{\Huge #3}\\%
+						{\Large #4}%
+					\fi%
+				\end{center}%
+			\end{minipage}%
+		};%
+	\else% Has no eye catcher
+		\draw (image.east) node(title)[anchor=west]  {{\begin{minipage}{\xebaposter@titleimage@textwidth}
+						\if@xebaposter@persian%
+							\persian{\bfseries\Huge\rl{#3}}\\{\Large\rl{#4}}%
+							\else%
+							{\bfseries\Huge #3}\\{\Large #4}%
+						\fi%
+					\end{minipage}}};%
+	\fi%
+	}% END poster begin
+	% The body
+	{% BEGIN poster end
+	% The end, draw gridlines if neccesary
+	\ifxebaposter@grid%
+		\newdimen{\gridpos}%
+		\pgfmathsetmacro{\z}{\xebaposter@columns-1}%
+		\foreach \y in {0,...,\z}%
+			{%
+				\setlength{\gridpos}{\y\colwidth+\y\xebaposter@@colspacing}%
+				\draw[draw=green,draw opacity=0.7] (\gridpos,0pt)  -- (\gridpos,\colheight)%
+				(\gridpos+\colwidth,0pt)  -- (\gridpos+\colwidth,\colheight);%
+			}%
+		% Horizontal lines, every 0.1:
+		%% Explicitly list all percentages, because with {0.0, 0.1, ..., 1.0} we
+		%% get rounding errors in the displayed numbers!
+		\foreach \y in {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0}%
+			{\if@xebaposter@persian%
+					\draw[draw=green,draw opacity=0.7]  (\textwidth,\colheight-\y\colheight) --%
+					(0pt,\colheight-\y\colheight) node[anchor=east] {\y};%
+				\else%
+					\draw[draw=green,draw opacity=0.7] (0pt,\colheight-\y\colheight)  --%
+					(\textwidth,\colheight-\y\colheight) node[anchor=west] {\y};%
+				\fi|}%
+	\fi%
+\end{tikzpicture}%
 %  \xkvview{}
-  \par%
-  }% END poster end
+\par%
+}% END poster end

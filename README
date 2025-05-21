@@ -1,20 +1,20 @@
 _____________________
 The xebaposter class
-v2.53
+v2.54
 
 The class is designed for making an academic poster. This work is a fork of 
 baposter by Brian Amberg and Reinhold Kainhofer available at 
-http://www.brian-amberg.de/uni/poster/.
+https://web.archive.org/web/20230912095502/http://www.brian-amberg.de/uni/poster/
 
 The class could be used with both latin and persian posters.
 For more information, please see the documentation.
 
-Current version release date: 2022/06/08
+Current version release date: 2025/05/21
 ___________________
-Seiied-Mohammad-Javad Razvian
+Javad Razvian
 javadr@gmail.com
 
-Copyright © 2015-2022
+Copyright © 2015-2025
 It may be distributed and/or modified under the LaTeX Project Public License,
 version 1.3c or higher (your choice). The latest version of
 this license is at: http://www.latex-project.org/lppl.txt

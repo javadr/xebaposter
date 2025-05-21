@@ -23,7 +23,7 @@ ctan: clean
 	cp -v README        $(PKG)
 	cp -v $(PKG).cls    $(PKG)/tex
 	cp -rv images     	$(PKG)/doc
-	cp -v $(PKG)-doc.* poster* $(PKG)/doc
+	cp -v $(PKG)-doc.{tex,pdf} poster{-fa,}.{tex,pdf} $(PKG)/doc
 	zip -r $(PKG).zip $(PKG)
 	mv -fv $(PKG).zip ..
 	rm -rfv ../$(PKG)
